@@ -1,0 +1,30 @@
+﻿# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+venv/
+.venv/
+env/
+ENV/
+
+# Environment
+.env
+*.env
+
+# Data/model generated files
+app/data/synthetic/*.csv
+app/data/synthetic/*.json
+app/models/*.joblib
+app/models/*.json
+app/data/local/*.sqlite3
+app/data/local/*.db
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db

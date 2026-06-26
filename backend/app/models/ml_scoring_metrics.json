@@ -1,0 +1,186 @@
+{
+  "model_type": "logistic_regression_scorecard",
+  "model_version": "synthetic-v1",
+  "training_rows": 9600,
+  "test_rows": 2400,
+  "roc_auc": 0.786,
+  "accuracy": 0.71,
+  "classification_report": {
+    "0": {
+      "precision": 0.7135593220338983,
+      "recall": 0.7016666666666667,
+      "f1-score": 0.7075630252100841,
+      "support": 1200.0
+    },
+    "1": {
+      "precision": 0.7065573770491803,
+      "recall": 0.7183333333333334,
+      "f1-score": 0.7123966942148761,
+      "support": 1200.0
+    },
+    "accuracy": 0.71,
+    "macro avg": {
+      "precision": 0.7100583495415393,
+      "recall": 0.71,
+      "f1-score": 0.70997985971248,
+      "support": 2400.0
+    },
+    "weighted avg": {
+      "precision": 0.7100583495415392,
+      "recall": 0.71,
+      "f1-score": 0.70997985971248,
+      "support": 2400.0
+    }
+  },
+  "fairness_monitoring_report": {
+    "gender": {
+      "female": {
+        "rows": 1307,
+        "predicted_ready_rate": 0.5027,
+        "actual_repaid_rate": 0.4682
+      },
+      "male": {
+        "rows": 1093,
+        "predicted_ready_rate": 0.5151,
+        "actual_repaid_rate": 0.538
+      }
+    },
+    "is_youth": {
+      "False": {
+        "rows": 1545,
+        "predicted_ready_rate": 0.5003,
+        "actual_repaid_rate": 0.4945
+      },
+      "True": {
+        "rows": 855,
+        "predicted_ready_rate": 0.5228,
+        "actual_repaid_rate": 0.5099
+      }
+    },
+    "is_pwd": {
+      "False": {
+        "rows": 2148,
+        "predicted_ready_rate": 0.5098,
+        "actual_repaid_rate": 0.4986
+      },
+      "True": {
+        "rows": 252,
+        "predicted_ready_rate": 0.496,
+        "actual_repaid_rate": 0.5119
+      }
+    },
+    "farmer_type": {
+      "PWD farmer": {
+        "rows": 252,
+        "predicted_ready_rate": 0.496,
+        "actual_repaid_rate": 0.5119
+      },
+      "Smallholder farmer": {
+        "rows": 618,
+        "predicted_ready_rate": 0.5146,
+        "actual_repaid_rate": 0.5421
+      },
+      "Women farmer": {
+        "rows": 759,
+        "predicted_ready_rate": 0.4914,
+        "actual_repaid_rate": 0.4519
+      },
+      "Youth farmer": {
+        "rows": 771,
+        "predicted_ready_rate": 0.524,
+        "actual_repaid_rate": 0.5097
+      }
+    }
+  },
+  "features_used": [
+    "loan_request",
+    "input_purchase_count",
+    "cooperative_repayment_score",
+    "completed_repayment_history",
+    "missed_repayment",
+    "has_formal_credit_history",
+    "has_sales_records",
+    "has_buyer_records",
+    "active_savings_group",
+    "cooperative_member",
+    "reliable_buyer",
+    "verified_input_purchase",
+    "extension_support",
+    "county",
+    "crop",
+    "crop_stage",
+    "season",
+    "savings_group_reliability",
+    "cooperative_reliability",
+    "buyer_payment_reliability",
+    "mobile_money_consistency",
+    "peer_lending_reliability",
+    "seasonal_income_pattern",
+    "localized_pest_outbreak",
+    "localized_drought_exposure",
+    "input_purchase_frequency",
+    "market_payment_consistency",
+    "climate_risk_level",
+    "pest_risk_level",
+    "market_delay_risk"
+  ],
+  "numeric_features": [
+    "loan_request",
+    "input_purchase_count",
+    "cooperative_repayment_score"
+  ],
+  "boolean_features": [
+    "completed_repayment_history",
+    "missed_repayment",
+    "has_formal_credit_history",
+    "has_sales_records",
+    "has_buyer_records",
+    "active_savings_group",
+    "cooperative_member",
+    "reliable_buyer",
+    "verified_input_purchase",
+    "extension_support"
+  ],
+  "categorical_features": [
+    "county",
+    "crop",
+    "crop_stage",
+    "season",
+    "savings_group_reliability",
+    "cooperative_reliability",
+    "buyer_payment_reliability",
+    "mobile_money_consistency",
+    "peer_lending_reliability",
+    "seasonal_income_pattern",
+    "localized_pest_outbreak",
+    "localized_drought_exposure",
+    "input_purchase_frequency",
+    "market_payment_consistency",
+    "climate_risk_level",
+    "pest_risk_level",
+    "market_delay_risk"
+  ],
+  "excluded_from_training": [
+    "farmer_id",
+    "name",
+    "gender",
+    "age",
+    "is_youth",
+    "is_pwd",
+    "disability_type",
+    "farmer_type",
+    "has_land_title",
+    "phone_number_masked",
+    "phone_type",
+    "preferred_channel",
+    "preferred_language",
+    "literacy_level",
+    "repayment_outcome",
+    "latent_repayment_probability",
+    "target_repaid_on_time"
+  ],
+  "sklearn_version": "1.9.0",
+  "python_executable": "C:\\Users\\user\\Documents\\HACKATHON\\invisible-farmer-credit-agent-v2\\backend\\venv\\Scripts\\python.exe",
+  "important_boundary": "The model predicts repayment readiness for loan officer decision support. It does not approve, reject, or disburse loans.",
+  "fairness_note": "Protected and inclusion-related variables are excluded from training. They are used for fairness monitoring, accessibility, and exclusion-context analysis."
+}

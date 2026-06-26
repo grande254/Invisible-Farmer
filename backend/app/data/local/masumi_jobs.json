@@ -1,0 +1,2355 @@
+{
+  "jobs": {
+    "MASUMI-IFCR-1A20E16B8E64": {
+      "job_id": "MASUMI-IFCR-1A20E16B8E64",
+      "agent_identifier": "local-invisible-farmer-credit-review-agent",
+      "agent_name": "Invisible Farmer Credit Review Agent",
+      "agent_version": "v2",
+      "farmer_id": "F001",
+      "requested_by": "Kakamega branch loan officer",
+      "purpose": "Credit-readiness review for input finance",
+      "status": "completed",
+      "created_at": "2026-06-26T05:47:06.819045+00:00",
+      "updated_at": "2026-06-26T05:54:19.471147+00:00",
+      "payment": {
+        "payment_id": "IFCR-PAY-283BFB65D9",
+        "job_id": "MASUMI-IFCR-1A20E16B8E64",
+        "farmer_id": "F001",
+        "payment_mode": "local_mocked",
+        "payment_status": "mocked_confirmed",
+        "amount": 0,
+        "currency": "USD",
+        "reason": "Local Masumi development mode. Payment is mocked so the demo can show job creation, review execution, audit, and human outcome recording.",
+        "created_at": "2026-06-26T05:47:06.819154+00:00"
+      },
+      "result": {
+        "review_id": "IFCR-REV-78FF648946",
+        "created_at": "2026-06-26T05:48:13.960095+00:00",
+        "review_type": "credit_readiness_review",
+        "agent_name": "Invisible Farmer Credit Review Agent",
+        "agent_version": "v2",
+        "farmer_id": "F001",
+        "farmer_name": "Mary Wanjiku",
+        "status": "completed",
+        "decision_support": {
+          "farmer": {
+            "farmer_id": "F001",
+            "name": "Mary Wanjiku",
+            "county": "Kakamega",
+            "area": "Lurambi",
+            "crop": "Vegetables",
+            "crop_stage": "harvest",
+            "season": "long_rains",
+            "loan_request": 22000,
+            "loan_purpose": "Purchase certified vegetable seed and fertilizer"
+          },
+          "credit_readiness": {
+            "provider": "ml_scoring_agent",
+            "model_type": "logistic_regression_scorecard",
+            "model_version": "synthetic-v1",
+            "score": 98,
+            "repayment_readiness_probability": 0.9954,
+            "tier": "Gold",
+            "recommended_loan_range": "KES 20,000–30,000",
+            "confidence": "high",
+            "loan_officer_final_decision_required": true,
+            "manual_attention_required": false,
+            "human_review_required": true,
+            "positive_signals": [
+              "completed repayment history supported repayment readiness",
+              "has sales records supported repayment readiness",
+              "mobile money consistency = high supported repayment readiness",
+              "seasonal income pattern = stable supported repayment readiness",
+              "input purchase frequency = high supported repayment readiness",
+              "market payment consistency = strong supported repayment readiness"
+            ],
+            "risk_signals": [],
+            "technical_risk_signals": [
+              "loan request reduced repayment readiness",
+              "crop stage = harvest reduced repayment readiness"
+            ],
+            "material_risk_signals": [],
+            "missing_data": [
+              "formal credit history",
+              "land title or formal collateral"
+            ],
+            "alternative_data_used": [
+              "mobile money consistency",
+              "cooperative repayment score",
+              "peer lending reliability",
+              "input purchase frequency",
+              "market payment consistency",
+              "seasonal income pattern",
+              "savings group reliability",
+              "buyer payment reliability",
+              "extension support"
+            ],
+            "model_reason_codes": {
+              "top_positive_reason_codes": [
+                {
+                  "feature": "completed repayment history",
+                  "contribution": 0.6964
+                },
+                {
+                  "feature": "has sales records",
+                  "contribution": 0.5583
+                },
+                {
+                  "feature": "mobile money consistency = high",
+                  "contribution": 0.5111
+                },
+                {
+                  "feature": "seasonal income pattern = stable",
+                  "contribution": 0.4065
+                },
+                {
+                  "feature": "input purchase frequency = high",
+                  "contribution": 0.3866
+                },
+                {
+                  "feature": "market payment consistency = strong",
+                  "contribution": 0.3738
+                }
+              ],
+              "top_risk_reason_codes": [
+                {
+                  "feature": "loan request",
+                  "contribution": -0.1522
+                },
+                {
+                  "feature": "crop stage = harvest",
+                  "contribution": -0.0897
+                }
+              ],
+              "raw_reason_code_count": 28
+            },
+            "protected_attributes_excluded_from_training": [
+              "farmer_id",
+              "name",
+              "gender",
+              "age",
+              "is_youth",
+              "is_pwd",
+              "disability_type",
+              "farmer_type",
+              "has_land_title",
+              "phone_number_masked",
+              "phone_type",
+              "preferred_channel",
+              "preferred_language",
+              "literacy_level",
+              "repayment_outcome",
+              "latent_repayment_probability",
+              "target_repaid_on_time"
+            ],
+            "exclusion_adjustment_note": "The ML scoring agent does not use gender, age, youth status, PWD status, disability type, farmer type, phone type, preferred language, or lack of land title as risk penalties. It predicts repayment readiness using alternative farmer evidence such as mobile money consistency, cooperative repayment, peer lending reliability, input purchase frequency, market payment consistency, and seasonal farming context.",
+            "used_for_final_decision": false,
+            "final_decision_note": "The ML score supports loan officer review only. The human loan officer makes the final decision."
+          },
+          "graph_intelligence": {
+            "provider": "neo4j_graph_intelligence",
+            "status": "live",
+            "graph_support_level": "strong",
+            "business_use": "Graph intelligence converts hidden farmer relationships into verification paths, network risk context, and alternative evidence for loan officer decision support.",
+            "trusted_relationship_signals": [
+              "Savings group relationship can support social repayment evidence.",
+              "Cooperative relationship can support contribution, delivery, or repayment verification.",
+              "Buyer or market payment relationship can support produce sales verification.",
+              "Input supplier relationship can verify active farming investment.",
+              "Extension officer relationship can support crop management verification.",
+              "Mobile money pattern provides additional relationship-adjacent transaction evidence.",
+              "Farmer has both cooperative and savings-group verification paths."
+            ],
+            "network_risk_signals": [],
+            "relationship_paths": [
+              {
+                "path": "Farmer -[LOCATED_IN]-> Kakamega",
+                "relationship": "LOCATED_IN",
+                "business_use": "geographic risk context"
+              },
+              {
+                "path": "Farmer -[GROWS]-> Vegetables",
+                "relationship": "GROWS",
+                "business_use": "seasonal crop risk context"
+              },
+              {
+                "path": "Farmer -[MEMBER_OF]-> Kakamega Vegetables Cooperative",
+                "relationship": "MEMBER_OF",
+                "business_use": "cooperative contribution and repayment verification"
+              },
+              {
+                "path": "Farmer -[SAVES_WITH]-> Lurambi Vegetables Savings Group",
+                "relationship": "SAVES_WITH",
+                "business_use": "group savings and social repayment evidence"
+              },
+              {
+                "path": "Farmer -[SELLS_TO]-> Kakamega Vegetables Buyer Network",
+                "relationship": "SELLS_TO",
+                "business_use": "buyer receipt and market payment verification"
+              },
+              {
+                "path": "Farmer -[BUYS_FROM]-> Kakamega Agrovet Supplier Network",
+                "relationship": "BUYS_FROM",
+                "business_use": "input purchase and farming activity verification"
+              },
+              {
+                "path": "Farmer -[ADVISED_BY]-> Lurambi Extension Support Desk",
+                "relationship": "ADVISED_BY",
+                "business_use": "agronomy or extension support verification"
+              }
+            ],
+            "similarity_evidence": [
+              {
+                "peer_farmer_id": "F010",
+                "peer_name": "Jane Nekesa",
+                "similarity_score": 0.57,
+                "shared_reasons": [
+                  "same county",
+                  "same season",
+                  "similar savings group signal",
+                  "similar climate risk level"
+                ],
+                "business_use": "Peer similarity helps the loan officer compare this farmer against similar branch profiles. It does not approve or reject the farmer."
+              }
+            ],
+            "network_concentration": {
+              "cooperative_network": [
+                {
+                  "connected_farmers": null,
+                  "name": null,
+                  "type": "cooperative"
+                }
+              ],
+              "savings_group_network": [
+                {
+                  "connected_farmers": null,
+                  "name": null,
+                  "type": "savings_group"
+                }
+              ],
+              "buyer_network": [
+                {
+                  "connected_farmers": null,
+                  "name": null,
+                  "type": "buyer"
+                }
+              ]
+            },
+            "recommended_verification_path": [
+              "Confirm farmer identity, KYC details, and consent to use relationship evidence.",
+              "Verify savings group contributions or repayment references.",
+              "Verify cooperative membership, contributions, produce delivery, or repayment score.",
+              "Verify buyer receipts, produce sales records, or market payment confirmations.",
+              "Verify input purchase receipts from agrovet or supplier.",
+              "Verify extension officer or agronomist support record.",
+              "Record human loan officer outcome before any normal loan processing step."
+            ],
+            "graph_summary": "Graph support level is strong. The graph found 7 relationship path(s), 7 trusted relationship signal(s), and no material network risk signal. Use this to verify alternative evidence before the human loan officer records the final outcome.",
+            "score_handling": {
+              "does_not_override_ml_score": true,
+              "does_not_approve_or_reject": true,
+              "used_for": "relationship verification, risk context, and loan officer review guidance"
+            },
+            "agent": {
+              "name": "Neo4j Graph Intelligence Agent",
+              "version": "v1",
+              "role": "Uses Neo4j relationship intelligence to reveal cooperative, savings group, buyer, input supplier, extension support, county, crop, and peer-similarity evidence."
+            },
+            "linked_scoring_context": {
+              "ml_provider": "ml_scoring_agent",
+              "ml_score": 98,
+              "ml_tier": "Gold",
+              "important_boundary": "Graph intelligence supports verification and context. It does not override the ML score and does not make the final lending decision."
+            }
+          },
+          "decision_recommendation": {
+            "recommendation": "Proceed to loan officer review",
+            "reason": "Strong repayment-readiness signals are available, but human review remains required. Neo4j graph intelligence found useful relationship verification paths.",
+            "loan_officer_final_decision_required": true,
+            "not_an_approval": true,
+            "not_a_rejection": true,
+            "human_review_options": [
+              "Proceed to loan processing",
+              "Request more information",
+              "Adjust recommended amount",
+              "Defer for record building",
+              "Manual decline"
+            ]
+          },
+          "alternative_risk_intelligence": {
+            "mobile_money_consistency": "high",
+            "cooperative_repayment_score": 88,
+            "peer_lending_reliability": "strong",
+            "seasonal_income_pattern": "stable",
+            "input_purchase_frequency": "high",
+            "market_payment_consistency": "strong",
+            "alternative_data_used": [
+              "mobile money consistency",
+              "cooperative repayment score",
+              "peer lending reliability",
+              "input purchase frequency",
+              "market payment consistency",
+              "seasonal income pattern",
+              "savings group reliability",
+              "buyer payment reliability",
+              "extension support"
+            ],
+            "graph_support_level": "strong",
+            "trusted_relationship_signals": [
+              "Savings group relationship can support social repayment evidence.",
+              "Cooperative relationship can support contribution, delivery, or repayment verification.",
+              "Buyer or market payment relationship can support produce sales verification.",
+              "Input supplier relationship can verify active farming investment.",
+              "Extension officer relationship can support crop management verification.",
+              "Mobile money pattern provides additional relationship-adjacent transaction evidence.",
+              "Farmer has both cooperative and savings-group verification paths."
+            ],
+            "relationship_paths": [
+              {
+                "path": "Farmer -[LOCATED_IN]-> Kakamega",
+                "relationship": "LOCATED_IN",
+                "business_use": "geographic risk context"
+              },
+              {
+                "path": "Farmer -[GROWS]-> Vegetables",
+                "relationship": "GROWS",
+                "business_use": "seasonal crop risk context"
+              },
+              {
+                "path": "Farmer -[MEMBER_OF]-> Kakamega Vegetables Cooperative",
+                "relationship": "MEMBER_OF",
+                "business_use": "cooperative contribution and repayment verification"
+              },
+              {
+                "path": "Farmer -[SAVES_WITH]-> Lurambi Vegetables Savings Group",
+                "relationship": "SAVES_WITH",
+                "business_use": "group savings and social repayment evidence"
+              },
+              {
+                "path": "Farmer -[SELLS_TO]-> Kakamega Vegetables Buyer Network",
+                "relationship": "SELLS_TO",
+                "business_use": "buyer receipt and market payment verification"
+              },
+              {
+                "path": "Farmer -[BUYS_FROM]-> Kakamega Agrovet Supplier Network",
+                "relationship": "BUYS_FROM",
+                "business_use": "input purchase and farming activity verification"
+              },
+              {
+                "path": "Farmer -[ADVISED_BY]-> Lurambi Extension Support Desk",
+                "relationship": "ADVISED_BY",
+                "business_use": "agronomy or extension support verification"
+              }
+            ],
+            "exclusion_adjustment_note": "The ML scoring agent does not use gender, age, youth status, PWD status, disability type, farmer type, phone type, preferred language, or lack of land title as risk penalties. It predicts repayment readiness using alternative farmer evidence such as mobile money consistency, cooperative repayment, peer lending reliability, input purchase frequency, market payment consistency, and seasonal farming context."
+          },
+          "risk_context": {
+            "county": "Kakamega",
+            "area": "Lurambi",
+            "crop": "Vegetables",
+            "crop_stage": "harvest",
+            "season": "long_rains",
+            "climate_risk_level": "medium",
+            "pest_risk_level": "low",
+            "market_delay_risk": "low",
+            "localized_pest_outbreak": "low",
+            "localized_drought_exposure": "medium"
+          },
+          "inclusion_context": {
+            "farmer_type": "Women farmer",
+            "gender": "female",
+            "age": 42,
+            "is_youth": false,
+            "is_pwd": false,
+            "disability_type": null,
+            "has_land_title": false,
+            "phone_type": "feature_phone",
+            "preferred_channel": "ussd",
+            "preferred_language": "en",
+            "literacy_level": "medium",
+            "how_used": "These fields are used for fairness monitoring, accessibility, segmentation, and exclusion-context analysis. They are not used as negative risk penalties."
+          },
+          "fairness": {
+            "gender_penalty_applied": false,
+            "age_penalty_applied": false,
+            "youth_penalty_applied": false,
+            "pwd_penalty_applied": false,
+            "land_title_penalty_applied": false,
+            "protected_fields_not_used_as_risk_penalties": [
+              "gender",
+              "age",
+              "is_youth",
+              "is_pwd",
+              "disability_type",
+              "farmer_type",
+              "has_land_title"
+            ],
+            "protected_fields_purpose": {
+              "gender": "fairness monitoring and exclusion-context analysis",
+              "age": "fairness monitoring; youth status is not a credit penalty",
+              "is_youth": "youth inclusion monitoring and product/access support",
+              "is_pwd": "accessibility support and fairness monitoring",
+              "disability_type": "accessibility accommodation only",
+              "farmer_type": "segmentation and inclusion-context reporting",
+              "has_land_title": "collateral-context monitoring only; not automatic exclusion"
+            },
+            "alternative_evidence_used_to_reduce_exclusion": [
+              "mobile money consistency",
+              "cooperative repayment score",
+              "peer lending reliability",
+              "input purchase frequency",
+              "market payment consistency",
+              "seasonal income pattern",
+              "savings group reliability",
+              "buyer payment reliability",
+              "extension support"
+            ],
+            "risk_context_used": [
+              "localized pest outbreak",
+              "localized drought exposure",
+              "climate risk level",
+              "pest risk level",
+              "market delay risk",
+              "crop",
+              "crop stage",
+              "season"
+            ],
+            "note": "The system is identity-aware, not identity-scored. Protected and inclusion-related attributes are used for fairness monitoring, accessibility, and exclusion-context analysis. They are not used as negative risk penalties."
+          },
+          "farmer_message": {
+            "sms": "Invisible Farmer: Your credit-readiness review is complete. Tier: Gold. Score: 98/100. Possible support range: KES 20,000–30,000. Loan officer final decision required.",
+            "improvement_tips": [
+              "Use small formal products where available to build a track record."
+            ],
+            "ussd": {
+              "farmer_id": "F001",
+              "language": "en",
+              "ussd_code": "*384*55#",
+              "screens": [
+                {
+                  "screen": 1,
+                  "type": "CON",
+                  "text": "Invisible Farmer\n1. Check review status\n2. Request credit review\n3. View improvement tips\n0. End"
+                },
+                {
+                  "screen": 2,
+                  "type": "END",
+                  "text": "Review Status\nTier: Gold\nScore: 98/100\nPossible support: KES 20,000–30,000\nLoan officer final decision required."
+                }
+              ]
+            },
+            "farmer_safe": true,
+            "deterministic_sms": "Invisible Farmer: Your credit-readiness review is complete. Tier: Gold. Score: 98/100. Possible support range: KES 20,000–30,000. Loan officer final decision required.",
+            "ai_ussd_summary": "Tier: Gold\nScore: 98/100\nPossible support: KES 20,000–30,000\nLoan officer final decision required.",
+            "generated_by": "local_fallback"
+          },
+          "officer_memo": "Mary Wanjiku has a Gold credit-readiness tier with a score of 98/100. The suggested support range is KES 20,000–30,000. The review used alternative evidence including mobile money consistency, cooperative repayment score, peer lending reliability, input purchase frequency, market payment consistency, seasonal income pattern. Key missing or verification items: formal credit history, land title or formal collateral. Material risk signals: no material risk signals. This is decision support only; a human loan officer must make and record the final outcome.",
+          "featherless_business_explanation": {
+            "provider": "local_fallback",
+            "status": "fallback",
+            "outputs": {
+              "officer_decision_memo": "Mary Wanjiku has a Gold credit-readiness tier with a score of 98/100. The suggested support range is KES 20,000–30,000. The review used alternative evidence including mobile money consistency, cooperative repayment score, peer lending reliability, input purchase frequency, market payment consistency, seasonal income pattern. Key missing or verification items: formal credit history, land title or formal collateral. Material risk signals: no material risk signals. This is decision support only; a human loan officer must make and record the final outcome.",
+              "credit_committee_brief": "Mary Wanjiku is assessed as Gold using ML repayment-readiness scoring and alternative farmer evidence. Recommendation: Proceed to loan officer review. Final loan processing depends on human officer review, lender policy, and recorded outcome.",
+              "branch_action_plan": [
+                "Confirm farmer identity, KYC details, and consent to use alternative evidence.",
+                "Verify the strongest alternative evidence used in the review.",
+                "Collect missing records listed in the checklist.",
+                "Review crop, season, climate, pest, and market context before final officer outcome.",
+                "Record the human review outcome before any normal loan processing step."
+              ],
+              "farmer_sms": "Invisible Farmer: Your credit-readiness review is complete. Tier: Gold. Score: 98/100. Possible support range: KES 20,000–30,000. Loan officer final decision required.",
+              "farmer_ussd_summary": "Tier: Gold\nScore: 98/100\nPossible support: KES 20,000–30,000\nLoan officer final decision required.",
+              "data_collection_checklist": [
+                "Confirm farmer identity, KYC details, and consent to use alternative evidence.",
+                "Check whether any small formal repayment record, SACCO record, or prior lender reference exists.",
+                "Document collateral context and apply the lender's alternative-evidence route where available."
+              ],
+              "risk_mitigation_notes": [
+                "No material risk signal is detected from the current review. Continue normal officer verification."
+              ],
+              "inclusion_accessibility_note": "Protected and inclusion-related fields are used for fairness monitoring, accessibility, and exclusion-context analysis. They are not used as negative risk penalties. Lack of land title is treated as collateral-context, not automatic exclusion.",
+              "audit_explanation": "The agent generated ML-based credit-readiness decision support using alternative farmer evidence, reason codes, missing records, fairness context, and risk context. The final lending outcome remains with the human loan officer.",
+              "model_limitations": "The ML model is trained on balanced synthetic repayment data for prototype demonstration. It should be validated with lender repayment data and monitored for fairness before production use."
+            },
+            "quality_controls": {
+              "final_decision_made_by_agent": false,
+              "loan_officer_final_decision_required": true,
+              "safe_for_farmer": true,
+              "uses_protected_fields_as_penalty": false
+            },
+            "error": "Error code: 503 - {'error': {'message': 'unsloth/Qwen2.5-32B-Instruct is temporarily at capacity. Please try again shortly.', 'type': 'server_error', 'code': 'capacity_exhausted'}}",
+            "business_use": "Fallback explanation used because Featherless was unavailable. The business output structure remains the same."
+          },
+          "deterministic_officer_memo": "Loan Officer Memo\n\nFarmer: Mary Wanjiku (F001)\nLocation: Lurambi, Kakamega\nCrop/season: Vegetables during long_rains\nLoan request: KES 22,000 for Purchase certified vegetable seed and fertilizer\n\nScoring provider: ml_scoring_agent\nRepayment-readiness score: 98/100\nRepayment-readiness probability: 0.9954\nTier: Gold\nSuggested support range: KES 20,000–30,000\n\nAlternative evidence used: mobile money consistency; cooperative repayment score; peer lending reliability; input purchase frequency; market payment consistency; seasonal income pattern\n\nPositive signals: completed repayment history supported repayment readiness; has sales records supported repayment readiness; mobile money consistency = high supported repayment readiness; seasonal income pattern = stable supported repayment readiness; input purchase frequency = high supported repayment readiness\n\nRisk signals: No major risk signals detected.\n\nMissing data: formal credit history; land title or formal collateral\n\nResponsible AI note: The system is identity-aware, not identity-scored. Protected and inclusion-related attributes are used for fairness monitoring, accessibility, and exclusion-context analysis. They are not used as negative risk penalties.\n\nBoundary: This agent prepares decision support only. The human loan officer must make and record the final review outcome.",
+          "credit_committee_brief": "Mary Wanjiku is assessed as Gold using ML repayment-readiness scoring and alternative farmer evidence. Recommendation: Proceed to loan officer review. Final loan processing depends on human officer review, lender policy, and recorded outcome.",
+          "branch_action_plan": [
+            "Confirm farmer identity, KYC details, and consent to use alternative evidence.",
+            "Verify the strongest alternative evidence used in the review.",
+            "Collect missing records listed in the checklist.",
+            "Review crop, season, climate, pest, and market context before final officer outcome.",
+            "Record the human review outcome before any normal loan processing step."
+          ],
+          "data_collection_checklist": [
+            "Confirm farmer identity, KYC details, and consent to use alternative evidence.",
+            "Check whether any small formal repayment record, SACCO record, or prior lender reference exists.",
+            "Document collateral context and apply the lender's alternative-evidence route where available."
+          ],
+          "risk_mitigation_notes": [
+            "No material risk signal is detected from the current review. Continue normal officer verification."
+          ],
+          "inclusion_accessibility_note": "Protected and inclusion-related fields are used for fairness monitoring, accessibility, and exclusion-context analysis. They are not used as negative risk penalties. Lack of land title is treated as collateral-context, not automatic exclusion.",
+          "audit_explanation": "The agent generated ML-based credit-readiness decision support using alternative farmer evidence, reason codes, missing records, fairness context, and risk context. The final lending outcome remains with the human loan officer.",
+          "model_limitations": "The ML model is trained on balanced synthetic repayment data for prototype demonstration. It should be validated with lender repayment data and monitored for fairness before production use.",
+          "explanation_agent": {
+            "name": "Featherless Business Explanation Agent",
+            "version": "v1",
+            "role": "Transforms ML score, reason codes, alternative evidence, missing records, risk context, and fairness context into business-ready officer, farmer, branch, committee, and audit outputs."
+          }
+        },
+        "module_status": {
+          "ml_scoring_agent": "live",
+          "fairness_checks": "live",
+          "farmer_safe_messages": "live",
+          "featherless_explanations": "fallback",
+          "neo4j_graph_intelligence": "live",
+          "masumi_job_audit": "planned_stage_6",
+          "human_review_outcome": "planned_stage_6"
+        },
+        "responsible_ai_boundary": {
+          "agent_approves_or_rejects_loans": false,
+          "agent_disburses_money": false,
+          "loan_officer_final_decision_required": true,
+          "message": "This agent prepares credit-readiness decision support only. A human loan officer must make and record the final review outcome."
+        }
+      },
+      "human_review_outcome": {
+        "outcome": "Proceed to loan processing",
+        "officer_name": "Demo Loan Officer",
+        "notes": "Strong alternative evidence and no material risk signal. Final processing remains subject to normal lender policy.",
+        "recorded_at": "2026-06-26T05:54:19.471107+00:00",
+        "important_boundary": "This is a human loan officer outcome. It is not an autonomous AI approval or rejection."
+      },
+      "audit_events": [
+        {
+          "timestamp": "2026-06-26T05:47:06.819101+00:00",
+          "job_id": "MASUMI-IFCR-1A20E16B8E64",
+          "farmer_id": "F001",
+          "event_type": "job_created",
+          "message": "Masumi local job created for farmer credit-readiness review.",
+          "metadata": {
+            "requested_by": "Kakamega branch loan officer",
+            "purpose": "Credit-readiness review for input finance"
+          }
+        },
+        {
+          "timestamp": "2026-06-26T05:47:06.819171+00:00",
+          "job_id": "MASUMI-IFCR-1A20E16B8E64",
+          "farmer_id": "F001",
+          "event_type": "payment_mocked",
+          "message": "Local mocked payment status attached to Masumi job.",
+          "metadata": {
+            "payment_id": "IFCR-PAY-283BFB65D9",
+            "job_id": "MASUMI-IFCR-1A20E16B8E64",
+            "farmer_id": "F001",
+            "payment_mode": "local_mocked",
+            "payment_status": "mocked_confirmed",
+            "amount": 0,
+            "currency": "USD",
+            "reason": "Local Masumi development mode. Payment is mocked so the demo can show job creation, review execution, audit, and human outcome recording.",
+            "created_at": "2026-06-26T05:47:06.819154+00:00"
+          }
+        },
+        {
+          "timestamp": "2026-06-26T05:48:13.960168+00:00",
+          "job_id": "MASUMI-IFCR-1A20E16B8E64",
+          "farmer_id": "F001",
+          "event_type": "review_completed",
+          "message": "Credit-readiness review completed and attached to Masumi job.",
+          "metadata": {
+            "review_id": "IFCR-REV-78FF648946",
+            "ml_provider": "ml_scoring_agent",
+            "ml_score": 98,
+            "ml_tier": "Gold",
+            "graph_provider": "neo4j_graph_intelligence",
+            "graph_status": "live",
+            "featherless_provider": "local_fallback",
+            "featherless_status": "fallback"
+          }
+        },
+        {
+          "timestamp": "2026-06-26T05:54:19.471139+00:00",
+          "job_id": "MASUMI-IFCR-1A20E16B8E64",
+          "farmer_id": "F001",
+          "event_type": "human_outcome_recorded",
+          "message": "Human loan officer outcome recorded against Masumi job.",
+          "metadata": {
+            "outcome": "Proceed to loan processing",
+            "officer_name": "Demo Loan Officer",
+            "notes": "Strong alternative evidence and no material risk signal. Final processing remains subject to normal lender policy.",
+            "recorded_at": "2026-06-26T05:54:19.471107+00:00",
+            "important_boundary": "This is a human loan officer outcome. It is not an autonomous AI approval or rejection."
+          }
+        }
+      ],
+      "responsible_ai_boundary": {
+        "agent_approves_or_rejects_loans": false,
+        "agent_disburses_money": false,
+        "loan_officer_final_decision_required": true
+      }
+    },
+    "MASUMI-IFCR-6D217ACB657B": {
+      "job_id": "MASUMI-IFCR-6D217ACB657B",
+      "agent_identifier": "local-invisible-farmer-credit-review-agent",
+      "agent_name": "Invisible Farmer Credit Review Agent",
+      "agent_version": "v2",
+      "farmer_id": "F001",
+      "requested_by": "Kakamega Branch · Demo Loan Officer",
+      "purpose": "Credit-readiness review for input finance",
+      "status": "completed",
+      "created_at": "2026-06-26T06:56:47.042976+00:00",
+      "updated_at": "2026-06-26T07:08:50.189935+00:00",
+      "payment": {
+        "payment_id": "IFCR-PAY-18C849902F",
+        "job_id": "MASUMI-IFCR-6D217ACB657B",
+        "farmer_id": "F001",
+        "payment_mode": "local_mocked",
+        "payment_status": "mocked_confirmed",
+        "amount": 0,
+        "currency": "USD",
+        "reason": "Local Masumi development mode. Payment is mocked so the demo can show job creation, review execution, audit, and human outcome recording.",
+        "created_at": "2026-06-26T06:56:47.043037+00:00"
+      },
+      "result": {
+        "review_id": "IFCR-REV-BC1BF8EFD3",
+        "created_at": "2026-06-26T07:08:50.189889+00:00",
+        "review_type": "credit_readiness_review",
+        "agent_name": "Invisible Farmer Credit Review Agent",
+        "agent_version": "v2",
+        "farmer_id": "F001",
+        "farmer_name": "Mary Wanjiku",
+        "status": "completed",
+        "decision_support": {
+          "farmer": {
+            "farmer_id": "F001",
+            "name": "Mary Wanjiku",
+            "county": "Kakamega",
+            "area": "Lurambi",
+            "crop": "Vegetables",
+            "crop_stage": "harvest",
+            "season": "long_rains",
+            "loan_request": 22000,
+            "loan_purpose": "Purchase certified vegetable seed and fertilizer"
+          },
+          "credit_readiness": {
+            "provider": "ml_scoring_agent",
+            "model_type": "logistic_regression_scorecard",
+            "model_version": "synthetic-v1",
+            "score": 98,
+            "repayment_readiness_probability": 0.9954,
+            "tier": "Gold",
+            "recommended_loan_range": "KES 20,000–30,000",
+            "confidence": "high",
+            "loan_officer_final_decision_required": true,
+            "manual_attention_required": false,
+            "human_review_required": true,
+            "positive_signals": [
+              "completed repayment history supported repayment readiness",
+              "has sales records supported repayment readiness",
+              "mobile money consistency = high supported repayment readiness",
+              "seasonal income pattern = stable supported repayment readiness",
+              "input purchase frequency = high supported repayment readiness",
+              "market payment consistency = strong supported repayment readiness"
+            ],
+            "risk_signals": [],
+            "technical_risk_signals": [
+              "loan request reduced repayment readiness",
+              "crop stage = harvest reduced repayment readiness"
+            ],
+            "material_risk_signals": [],
+            "missing_data": [
+              "formal credit history",
+              "land title or formal collateral"
+            ],
+            "alternative_data_used": [
+              "mobile money consistency",
+              "cooperative repayment score",
+              "peer lending reliability",
+              "input purchase frequency",
+              "market payment consistency",
+              "seasonal income pattern",
+              "savings group reliability",
+              "buyer payment reliability",
+              "extension support"
+            ],
+            "model_reason_codes": {
+              "top_positive_reason_codes": [
+                {
+                  "feature": "completed repayment history",
+                  "contribution": 0.6964
+                },
+                {
+                  "feature": "has sales records",
+                  "contribution": 0.5583
+                },
+                {
+                  "feature": "mobile money consistency = high",
+                  "contribution": 0.5111
+                },
+                {
+                  "feature": "seasonal income pattern = stable",
+                  "contribution": 0.4065
+                },
+                {
+                  "feature": "input purchase frequency = high",
+                  "contribution": 0.3866
+                },
+                {
+                  "feature": "market payment consistency = strong",
+                  "contribution": 0.3738
+                }
+              ],
+              "top_risk_reason_codes": [
+                {
+                  "feature": "loan request",
+                  "contribution": -0.1522
+                },
+                {
+                  "feature": "crop stage = harvest",
+                  "contribution": -0.0897
+                }
+              ],
+              "raw_reason_code_count": 28
+            },
+            "protected_attributes_excluded_from_training": [
+              "farmer_id",
+              "name",
+              "gender",
+              "age",
+              "is_youth",
+              "is_pwd",
+              "disability_type",
+              "farmer_type",
+              "has_land_title",
+              "phone_number_masked",
+              "phone_type",
+              "preferred_channel",
+              "preferred_language",
+              "literacy_level",
+              "repayment_outcome",
+              "latent_repayment_probability",
+              "target_repaid_on_time"
+            ],
+            "exclusion_adjustment_note": "The ML scoring agent does not use gender, age, youth status, PWD status, disability type, farmer type, phone type, preferred language, or lack of land title as risk penalties. It predicts repayment readiness using alternative farmer evidence such as mobile money consistency, cooperative repayment, peer lending reliability, input purchase frequency, market payment consistency, and seasonal farming context.",
+            "used_for_final_decision": false,
+            "final_decision_note": "The ML score supports loan officer review only. The human loan officer makes the final decision."
+          },
+          "graph_intelligence": {
+            "provider": "neo4j_graph_intelligence",
+            "status": "live",
+            "graph_support_level": "strong",
+            "business_use": "Graph intelligence converts hidden farmer relationships into verification paths, network risk context, and alternative evidence for loan officer decision support.",
+            "trusted_relationship_signals": [
+              "Savings group relationship can support social repayment evidence.",
+              "Cooperative relationship can support contribution, delivery, or repayment verification.",
+              "Buyer or market payment relationship can support produce sales verification.",
+              "Input supplier relationship can verify active farming investment.",
+              "Extension officer relationship can support crop management verification.",
+              "Mobile money pattern provides additional relationship-adjacent transaction evidence.",
+              "Farmer has both cooperative and savings-group verification paths."
+            ],
+            "network_risk_signals": [],
+            "relationship_paths": [
+              {
+                "path": "Farmer -[LOCATED_IN]-> Kakamega",
+                "relationship": "LOCATED_IN",
+                "business_use": "geographic risk context"
+              },
+              {
+                "path": "Farmer -[GROWS]-> Vegetables",
+                "relationship": "GROWS",
+                "business_use": "seasonal crop risk context"
+              },
+              {
+                "path": "Farmer -[MEMBER_OF]-> Kakamega Vegetables Cooperative",
+                "relationship": "MEMBER_OF",
+                "business_use": "cooperative contribution and repayment verification"
+              },
+              {
+                "path": "Farmer -[SAVES_WITH]-> Lurambi Vegetables Savings Group",
+                "relationship": "SAVES_WITH",
+                "business_use": "group savings and social repayment evidence"
+              },
+              {
+                "path": "Farmer -[SELLS_TO]-> Kakamega Vegetables Buyer Network",
+                "relationship": "SELLS_TO",
+                "business_use": "buyer receipt and market payment verification"
+              },
+              {
+                "path": "Farmer -[BUYS_FROM]-> Kakamega Agrovet Supplier Network",
+                "relationship": "BUYS_FROM",
+                "business_use": "input purchase and farming activity verification"
+              },
+              {
+                "path": "Farmer -[ADVISED_BY]-> Lurambi Extension Support Desk",
+                "relationship": "ADVISED_BY",
+                "business_use": "agronomy or extension support verification"
+              }
+            ],
+            "similarity_evidence": [
+              {
+                "peer_farmer_id": "F010",
+                "peer_name": "Jane Nekesa",
+                "similarity_score": 0.57,
+                "shared_reasons": [
+                  "same county",
+                  "same season",
+                  "similar savings group signal",
+                  "similar climate risk level"
+                ],
+                "business_use": "Peer similarity helps the loan officer compare this farmer against similar branch profiles. It does not approve or reject the farmer."
+              }
+            ],
+            "network_concentration": {
+              "cooperative_network": [
+                {
+                  "connected_farmers": null,
+                  "name": null,
+                  "type": "cooperative"
+                }
+              ],
+              "savings_group_network": [
+                {
+                  "connected_farmers": null,
+                  "name": null,
+                  "type": "savings_group"
+                }
+              ],
+              "buyer_network": [
+                {
+                  "connected_farmers": null,
+                  "name": null,
+                  "type": "buyer"
+                }
+              ]
+            },
+            "recommended_verification_path": [
+              "Confirm farmer identity, KYC details, and consent to use relationship evidence.",
+              "Verify savings group contributions or repayment references.",
+              "Verify cooperative membership, contributions, produce delivery, or repayment score.",
+              "Verify buyer receipts, produce sales records, or market payment confirmations.",
+              "Verify input purchase receipts from agrovet or supplier.",
+              "Verify extension officer or agronomist support record.",
+              "Record human loan officer outcome before any normal loan processing step."
+            ],
+            "graph_summary": "Graph support level is strong. The graph found 7 relationship path(s), 7 trusted relationship signal(s), and no material network risk signal. Use this to verify alternative evidence before the human loan officer records the final outcome.",
+            "score_handling": {
+              "does_not_override_ml_score": true,
+              "does_not_approve_or_reject": true,
+              "used_for": "relationship verification, risk context, and loan officer review guidance"
+            },
+            "agent": {
+              "name": "Neo4j Graph Intelligence Agent",
+              "version": "v1",
+              "role": "Uses Neo4j relationship intelligence to reveal cooperative, savings group, buyer, input supplier, extension support, county, crop, and peer-similarity evidence."
+            },
+            "linked_scoring_context": {
+              "ml_provider": "ml_scoring_agent",
+              "ml_score": 98,
+              "ml_tier": "Gold",
+              "important_boundary": "Graph intelligence supports verification and context. It does not override the ML score and does not make the final lending decision."
+            }
+          },
+          "decision_recommendation": {
+            "recommendation": "Proceed to loan officer review",
+            "reason": "Strong repayment-readiness signals are available, but human review remains required. Neo4j graph intelligence found useful relationship verification paths.",
+            "loan_officer_final_decision_required": true,
+            "not_an_approval": true,
+            "not_a_rejection": true,
+            "human_review_options": [
+              "Proceed to loan processing",
+              "Request more information",
+              "Adjust recommended amount",
+              "Defer for record building",
+              "Manual decline"
+            ]
+          },
+          "alternative_risk_intelligence": {
+            "mobile_money_consistency": "high",
+            "cooperative_repayment_score": 88,
+            "peer_lending_reliability": "strong",
+            "seasonal_income_pattern": "stable",
+            "input_purchase_frequency": "high",
+            "market_payment_consistency": "strong",
+            "alternative_data_used": [
+              "mobile money consistency",
+              "cooperative repayment score",
+              "peer lending reliability",
+              "input purchase frequency",
+              "market payment consistency",
+              "seasonal income pattern",
+              "savings group reliability",
+              "buyer payment reliability",
+              "extension support"
+            ],
+            "graph_support_level": "strong",
+            "trusted_relationship_signals": [
+              "Savings group relationship can support social repayment evidence.",
+              "Cooperative relationship can support contribution, delivery, or repayment verification.",
+              "Buyer or market payment relationship can support produce sales verification.",
+              "Input supplier relationship can verify active farming investment.",
+              "Extension officer relationship can support crop management verification.",
+              "Mobile money pattern provides additional relationship-adjacent transaction evidence.",
+              "Farmer has both cooperative and savings-group verification paths."
+            ],
+            "relationship_paths": [
+              {
+                "path": "Farmer -[LOCATED_IN]-> Kakamega",
+                "relationship": "LOCATED_IN",
+                "business_use": "geographic risk context"
+              },
+              {
+                "path": "Farmer -[GROWS]-> Vegetables",
+                "relationship": "GROWS",
+                "business_use": "seasonal crop risk context"
+              },
+              {
+                "path": "Farmer -[MEMBER_OF]-> Kakamega Vegetables Cooperative",
+                "relationship": "MEMBER_OF",
+                "business_use": "cooperative contribution and repayment verification"
+              },
+              {
+                "path": "Farmer -[SAVES_WITH]-> Lurambi Vegetables Savings Group",
+                "relationship": "SAVES_WITH",
+                "business_use": "group savings and social repayment evidence"
+              },
+              {
+                "path": "Farmer -[SELLS_TO]-> Kakamega Vegetables Buyer Network",
+                "relationship": "SELLS_TO",
+                "business_use": "buyer receipt and market payment verification"
+              },
+              {
+                "path": "Farmer -[BUYS_FROM]-> Kakamega Agrovet Supplier Network",
+                "relationship": "BUYS_FROM",
+                "business_use": "input purchase and farming activity verification"
+              },
+              {
+                "path": "Farmer -[ADVISED_BY]-> Lurambi Extension Support Desk",
+                "relationship": "ADVISED_BY",
+                "business_use": "agronomy or extension support verification"
+              }
+            ],
+            "exclusion_adjustment_note": "The ML scoring agent does not use gender, age, youth status, PWD status, disability type, farmer type, phone type, preferred language, or lack of land title as risk penalties. It predicts repayment readiness using alternative farmer evidence such as mobile money consistency, cooperative repayment, peer lending reliability, input purchase frequency, market payment consistency, and seasonal farming context."
+          },
+          "risk_context": {
+            "county": "Kakamega",
+            "area": "Lurambi",
+            "crop": "Vegetables",
+            "crop_stage": "harvest",
+            "season": "long_rains",
+            "climate_risk_level": "medium",
+            "pest_risk_level": "low",
+            "market_delay_risk": "low",
+            "localized_pest_outbreak": "low",
+            "localized_drought_exposure": "medium"
+          },
+          "inclusion_context": {
+            "farmer_type": "Women farmer",
+            "gender": "female",
+            "age": 42,
+            "is_youth": false,
+            "is_pwd": false,
+            "disability_type": null,
+            "has_land_title": false,
+            "phone_type": "feature_phone",
+            "preferred_channel": "ussd",
+            "preferred_language": "en",
+            "literacy_level": "medium",
+            "how_used": "These fields are used for fairness monitoring, accessibility, segmentation, and exclusion-context analysis. They are not used as negative risk penalties."
+          },
+          "fairness": {
+            "gender_penalty_applied": false,
+            "age_penalty_applied": false,
+            "youth_penalty_applied": false,
+            "pwd_penalty_applied": false,
+            "land_title_penalty_applied": false,
+            "protected_fields_not_used_as_risk_penalties": [
+              "gender",
+              "age",
+              "is_youth",
+              "is_pwd",
+              "disability_type",
+              "farmer_type",
+              "has_land_title"
+            ],
+            "protected_fields_purpose": {
+              "gender": "fairness monitoring and exclusion-context analysis",
+              "age": "fairness monitoring; youth status is not a credit penalty",
+              "is_youth": "youth inclusion monitoring and product/access support",
+              "is_pwd": "accessibility support and fairness monitoring",
+              "disability_type": "accessibility accommodation only",
+              "farmer_type": "segmentation and inclusion-context reporting",
+              "has_land_title": "collateral-context monitoring only; not automatic exclusion"
+            },
+            "alternative_evidence_used_to_reduce_exclusion": [
+              "mobile money consistency",
+              "cooperative repayment score",
+              "peer lending reliability",
+              "input purchase frequency",
+              "market payment consistency",
+              "seasonal income pattern",
+              "savings group reliability",
+              "buyer payment reliability",
+              "extension support"
+            ],
+            "risk_context_used": [
+              "localized pest outbreak",
+              "localized drought exposure",
+              "climate risk level",
+              "pest risk level",
+              "market delay risk",
+              "crop",
+              "crop stage",
+              "season"
+            ],
+            "note": "The system is identity-aware, not identity-scored. Protected and inclusion-related attributes are used for fairness monitoring, accessibility, and exclusion-context analysis. They are not used as negative risk penalties."
+          },
+          "farmer_message": {
+            "sms": "Invisible Farmer: Your credit-readiness review is complete. Tier: Gold. Score: 98/100. Possible support range: KES 20,000–30,000. Loan officer final decision required.",
+            "improvement_tips": [
+              "Use small formal products where available to build a track record."
+            ],
+            "ussd": {
+              "farmer_id": "F001",
+              "language": "en",
+              "ussd_code": "*384*55#",
+              "screens": [
+                {
+                  "screen": 1,
+                  "type": "CON",
+                  "text": "Invisible Farmer\n1. Check review status\n2. Request credit review\n3. View improvement tips\n0. End"
+                },
+                {
+                  "screen": 2,
+                  "type": "END",
+                  "text": "Review Status\nTier: Gold\nScore: 98/100\nPossible support: KES 20,000–30,000\nLoan officer final decision required."
+                }
+              ]
+            },
+            "farmer_safe": true,
+            "deterministic_sms": "Invisible Farmer: Your credit-readiness review is complete. Tier: Gold. Score: 98/100. Possible support range: KES 20,000–30,000. Loan officer final decision required.",
+            "ai_ussd_summary": "Tier: Gold\nScore: 98/100\nPossible support: KES 20,000–30,000\nLoan officer final decision required.",
+            "generated_by": "local_fallback"
+          },
+          "officer_memo": "Mary Wanjiku has a Gold credit-readiness tier with a score of 98/100. The suggested support range is KES 20,000–30,000. The review used alternative evidence including mobile money consistency, cooperative repayment score, peer lending reliability, input purchase frequency, market payment consistency, seasonal income pattern. Key missing or verification items: formal credit history, land title or formal collateral. Material risk signals: no material risk signals. This is decision support only; a human loan officer must make and record the final outcome.",
+          "featherless_business_explanation": {
+            "provider": "local_fallback",
+            "status": "fallback",
+            "outputs": {
+              "officer_decision_memo": "Mary Wanjiku has a Gold credit-readiness tier with a score of 98/100. The suggested support range is KES 20,000–30,000. The review used alternative evidence including mobile money consistency, cooperative repayment score, peer lending reliability, input purchase frequency, market payment consistency, seasonal income pattern. Key missing or verification items: formal credit history, land title or formal collateral. Material risk signals: no material risk signals. This is decision support only; a human loan officer must make and record the final outcome.",
+              "credit_committee_brief": "Mary Wanjiku is assessed as Gold using ML repayment-readiness scoring and alternative farmer evidence. Recommendation: Proceed to loan officer review. Final loan processing depends on human officer review, lender policy, and recorded outcome.",
+              "branch_action_plan": [
+                "Confirm farmer identity, KYC details, and consent to use alternative evidence.",
+                "Verify the strongest alternative evidence used in the review.",
+                "Collect missing records listed in the checklist.",
+                "Review crop, season, climate, pest, and market context before final officer outcome.",
+                "Record the human review outcome before any normal loan processing step."
+              ],
+              "farmer_sms": "Invisible Farmer: Your credit-readiness review is complete. Tier: Gold. Score: 98/100. Possible support range: KES 20,000–30,000. Loan officer final decision required.",
+              "farmer_ussd_summary": "Tier: Gold\nScore: 98/100\nPossible support: KES 20,000–30,000\nLoan officer final decision required.",
+              "data_collection_checklist": [
+                "Confirm farmer identity, KYC details, and consent to use alternative evidence.",
+                "Check whether any small formal repayment record, SACCO record, or prior lender reference exists.",
+                "Document collateral context and apply the lender's alternative-evidence route where available."
+              ],
+              "risk_mitigation_notes": [
+                "No material risk signal is detected from the current review. Continue normal officer verification."
+              ],
+              "inclusion_accessibility_note": "Protected and inclusion-related fields are used for fairness monitoring, accessibility, and exclusion-context analysis. They are not used as negative risk penalties. Lack of land title is treated as collateral-context, not automatic exclusion.",
+              "audit_explanation": "The agent generated ML-based credit-readiness decision support using alternative farmer evidence, reason codes, missing records, fairness context, and risk context. The final lending outcome remains with the human loan officer.",
+              "model_limitations": "The ML model is trained on balanced synthetic repayment data for prototype demonstration. It should be validated with lender repayment data and monitored for fairness before production use."
+            },
+            "quality_controls": {
+              "final_decision_made_by_agent": false,
+              "loan_officer_final_decision_required": true,
+              "safe_for_farmer": true,
+              "uses_protected_fields_as_penalty": false
+            },
+            "error": "Error code: 503 - {'error': {'message': 'unsloth/Qwen2.5-32B-Instruct is temporarily at capacity. Please try again shortly.', 'type': 'server_error', 'code': 'capacity_exhausted'}}",
+            "business_use": "Fallback explanation used because Featherless was unavailable. The business output structure remains the same."
+          },
+          "deterministic_officer_memo": "Loan Officer Memo\n\nFarmer: Mary Wanjiku (F001)\nLocation: Lurambi, Kakamega\nCrop/season: Vegetables during long_rains\nLoan request: KES 22,000 for Purchase certified vegetable seed and fertilizer\n\nScoring provider: ml_scoring_agent\nRepayment-readiness score: 98/100\nRepayment-readiness probability: 0.9954\nTier: Gold\nSuggested support range: KES 20,000–30,000\n\nAlternative evidence used: mobile money consistency; cooperative repayment score; peer lending reliability; input purchase frequency; market payment consistency; seasonal income pattern\n\nPositive signals: completed repayment history supported repayment readiness; has sales records supported repayment readiness; mobile money consistency = high supported repayment readiness; seasonal income pattern = stable supported repayment readiness; input purchase frequency = high supported repayment readiness\n\nRisk signals: No major risk signals detected.\n\nMissing data: formal credit history; land title or formal collateral\n\nResponsible AI note: The system is identity-aware, not identity-scored. Protected and inclusion-related attributes are used for fairness monitoring, accessibility, and exclusion-context analysis. They are not used as negative risk penalties.\n\nBoundary: This agent prepares decision support only. The human loan officer must make and record the final review outcome.",
+          "credit_committee_brief": "Mary Wanjiku is assessed as Gold using ML repayment-readiness scoring and alternative farmer evidence. Recommendation: Proceed to loan officer review. Final loan processing depends on human officer review, lender policy, and recorded outcome.",
+          "branch_action_plan": [
+            "Confirm farmer identity, KYC details, and consent to use alternative evidence.",
+            "Verify the strongest alternative evidence used in the review.",
+            "Collect missing records listed in the checklist.",
+            "Review crop, season, climate, pest, and market context before final officer outcome.",
+            "Record the human review outcome before any normal loan processing step."
+          ],
+          "data_collection_checklist": [
+            "Confirm farmer identity, KYC details, and consent to use alternative evidence.",
+            "Check whether any small formal repayment record, SACCO record, or prior lender reference exists.",
+            "Document collateral context and apply the lender's alternative-evidence route where available."
+          ],
+          "risk_mitigation_notes": [
+            "No material risk signal is detected from the current review. Continue normal officer verification."
+          ],
+          "inclusion_accessibility_note": "Protected and inclusion-related fields are used for fairness monitoring, accessibility, and exclusion-context analysis. They are not used as negative risk penalties. Lack of land title is treated as collateral-context, not automatic exclusion.",
+          "audit_explanation": "The agent generated ML-based credit-readiness decision support using alternative farmer evidence, reason codes, missing records, fairness context, and risk context. The final lending outcome remains with the human loan officer.",
+          "model_limitations": "The ML model is trained on balanced synthetic repayment data for prototype demonstration. It should be validated with lender repayment data and monitored for fairness before production use.",
+          "explanation_agent": {
+            "name": "Featherless Business Explanation Agent",
+            "version": "v1",
+            "role": "Transforms ML score, reason codes, alternative evidence, missing records, risk context, and fairness context into business-ready officer, farmer, branch, committee, and audit outputs."
+          }
+        },
+        "module_status": {
+          "ml_scoring_agent": "live",
+          "fairness_checks": "live",
+          "farmer_safe_messages": "live",
+          "featherless_explanations": "fallback",
+          "neo4j_graph_intelligence": "live",
+          "masumi_job_audit": "planned_stage_6",
+          "human_review_outcome": "planned_stage_6"
+        },
+        "responsible_ai_boundary": {
+          "agent_approves_or_rejects_loans": false,
+          "agent_disburses_money": false,
+          "loan_officer_final_decision_required": true,
+          "message": "This agent prepares credit-readiness decision support only. A human loan officer must make and record the final review outcome."
+        }
+      },
+      "human_review_outcome": null,
+      "audit_events": [
+        {
+          "timestamp": "2026-06-26T06:56:47.043014+00:00",
+          "job_id": "MASUMI-IFCR-6D217ACB657B",
+          "farmer_id": "F001",
+          "event_type": "job_created",
+          "message": "Masumi local job created for farmer credit-readiness review.",
+          "metadata": {
+            "requested_by": "Kakamega Branch · Demo Loan Officer",
+            "purpose": "Credit-readiness review for input finance"
+          }
+        },
+        {
+          "timestamp": "2026-06-26T06:56:47.043049+00:00",
+          "job_id": "MASUMI-IFCR-6D217ACB657B",
+          "farmer_id": "F001",
+          "event_type": "payment_mocked",
+          "message": "Local mocked payment status attached to Masumi job.",
+          "metadata": {
+            "payment_id": "IFCR-PAY-18C849902F",
+            "job_id": "MASUMI-IFCR-6D217ACB657B",
+            "farmer_id": "F001",
+            "payment_mode": "local_mocked",
+            "payment_status": "mocked_confirmed",
+            "amount": 0,
+            "currency": "USD",
+            "reason": "Local Masumi development mode. Payment is mocked so the demo can show job creation, review execution, audit, and human outcome recording.",
+            "created_at": "2026-06-26T06:56:47.043037+00:00"
+          }
+        },
+        {
+          "timestamp": "2026-06-26T07:08:50.189963+00:00",
+          "job_id": "MASUMI-IFCR-6D217ACB657B",
+          "farmer_id": "F001",
+          "event_type": "review_completed",
+          "message": "Credit-readiness review completed and attached to Masumi job.",
+          "metadata": {
+            "review_id": "IFCR-REV-BC1BF8EFD3",
+            "ml_provider": "ml_scoring_agent",
+            "ml_score": 98,
+            "ml_tier": "Gold",
+            "graph_provider": "neo4j_graph_intelligence",
+            "graph_status": "live",
+            "featherless_provider": "local_fallback",
+            "featherless_status": "fallback"
+          }
+        }
+      ],
+      "responsible_ai_boundary": {
+        "agent_approves_or_rejects_loans": false,
+        "agent_disburses_money": false,
+        "loan_officer_final_decision_required": true
+      }
+    },
+    "MASUMI-IFCR-399A5ECF5D39": {
+      "job_id": "MASUMI-IFCR-399A5ECF5D39",
+      "agent_identifier": "local-invisible-farmer-credit-review-agent",
+      "agent_name": "Invisible Farmer Credit Review Agent",
+      "agent_version": "v2",
+      "farmer_id": "F001",
+      "requested_by": "Kakamega Branch · Demo Loan Officer",
+      "purpose": "Credit-readiness review for input finance",
+      "status": "completed",
+      "created_at": "2026-06-26T07:12:04.871334+00:00",
+      "updated_at": "2026-06-26T07:13:12.317823+00:00",
+      "payment": {
+        "payment_id": "IFCR-PAY-C2B5BF614F",
+        "job_id": "MASUMI-IFCR-399A5ECF5D39",
+        "farmer_id": "F001",
+        "payment_mode": "local_mocked",
+        "payment_status": "mocked_confirmed",
+        "amount": 0,
+        "currency": "USD",
+        "reason": "Local Masumi development mode. Payment is mocked so the demo can show job creation, review execution, audit, and human outcome recording.",
+        "created_at": "2026-06-26T07:12:04.871370+00:00"
+      },
+      "result": {
+        "review_id": "IFCR-REV-FD3F68AEB3",
+        "created_at": "2026-06-26T07:13:12.317774+00:00",
+        "review_type": "credit_readiness_review",
+        "agent_name": "Invisible Farmer Credit Review Agent",
+        "agent_version": "v2",
+        "farmer_id": "F001",
+        "farmer_name": "Mary Wanjiku",
+        "status": "completed",
+        "decision_support": {
+          "farmer": {
+            "farmer_id": "F001",
+            "name": "Mary Wanjiku",
+            "county": "Kakamega",
+            "area": "Lurambi",
+            "crop": "Vegetables",
+            "crop_stage": "harvest",
+            "season": "long_rains",
+            "loan_request": 22000,
+            "loan_purpose": "Purchase certified vegetable seed and fertilizer"
+          },
+          "credit_readiness": {
+            "provider": "ml_scoring_agent",
+            "model_type": "logistic_regression_scorecard",
+            "model_version": "synthetic-v1",
+            "score": 98,
+            "repayment_readiness_probability": 0.9954,
+            "tier": "Gold",
+            "recommended_loan_range": "KES 20,000–30,000",
+            "confidence": "high",
+            "loan_officer_final_decision_required": true,
+            "manual_attention_required": false,
+            "human_review_required": true,
+            "positive_signals": [
+              "completed repayment history supported repayment readiness",
+              "has sales records supported repayment readiness",
+              "mobile money consistency = high supported repayment readiness",
+              "seasonal income pattern = stable supported repayment readiness",
+              "input purchase frequency = high supported repayment readiness",
+              "market payment consistency = strong supported repayment readiness"
+            ],
+            "risk_signals": [],
+            "technical_risk_signals": [
+              "loan request reduced repayment readiness",
+              "crop stage = harvest reduced repayment readiness"
+            ],
+            "material_risk_signals": [],
+            "missing_data": [
+              "formal credit history",
+              "land title or formal collateral"
+            ],
+            "alternative_data_used": [
+              "mobile money consistency",
+              "cooperative repayment score",
+              "peer lending reliability",
+              "input purchase frequency",
+              "market payment consistency",
+              "seasonal income pattern",
+              "savings group reliability",
+              "buyer payment reliability",
+              "extension support"
+            ],
+            "model_reason_codes": {
+              "top_positive_reason_codes": [
+                {
+                  "feature": "completed repayment history",
+                  "contribution": 0.6964
+                },
+                {
+                  "feature": "has sales records",
+                  "contribution": 0.5583
+                },
+                {
+                  "feature": "mobile money consistency = high",
+                  "contribution": 0.5111
+                },
+                {
+                  "feature": "seasonal income pattern = stable",
+                  "contribution": 0.4065
+                },
+                {
+                  "feature": "input purchase frequency = high",
+                  "contribution": 0.3866
+                },
+                {
+                  "feature": "market payment consistency = strong",
+                  "contribution": 0.3738
+                }
+              ],
+              "top_risk_reason_codes": [
+                {
+                  "feature": "loan request",
+                  "contribution": -0.1522
+                },
+                {
+                  "feature": "crop stage = harvest",
+                  "contribution": -0.0897
+                }
+              ],
+              "raw_reason_code_count": 28
+            },
+            "protected_attributes_excluded_from_training": [
+              "farmer_id",
+              "name",
+              "gender",
+              "age",
+              "is_youth",
+              "is_pwd",
+              "disability_type",
+              "farmer_type",
+              "has_land_title",
+              "phone_number_masked",
+              "phone_type",
+              "preferred_channel",
+              "preferred_language",
+              "literacy_level",
+              "repayment_outcome",
+              "latent_repayment_probability",
+              "target_repaid_on_time"
+            ],
+            "exclusion_adjustment_note": "The ML scoring agent does not use gender, age, youth status, PWD status, disability type, farmer type, phone type, preferred language, or lack of land title as risk penalties. It predicts repayment readiness using alternative farmer evidence such as mobile money consistency, cooperative repayment, peer lending reliability, input purchase frequency, market payment consistency, and seasonal farming context.",
+            "used_for_final_decision": false,
+            "final_decision_note": "The ML score supports loan officer review only. The human loan officer makes the final decision."
+          },
+          "graph_intelligence": {
+            "provider": "neo4j_graph_intelligence",
+            "status": "live",
+            "graph_support_level": "strong",
+            "business_use": "Graph intelligence converts hidden farmer relationships into verification paths, network risk context, and alternative evidence for loan officer decision support.",
+            "trusted_relationship_signals": [
+              "Savings group relationship can support social repayment evidence.",
+              "Cooperative relationship can support contribution, delivery, or repayment verification.",
+              "Buyer or market payment relationship can support produce sales verification.",
+              "Input supplier relationship can verify active farming investment.",
+              "Extension officer relationship can support crop management verification.",
+              "Mobile money pattern provides additional relationship-adjacent transaction evidence.",
+              "Farmer has both cooperative and savings-group verification paths."
+            ],
+            "network_risk_signals": [],
+            "relationship_paths": [
+              {
+                "path": "Farmer -[LOCATED_IN]-> Kakamega",
+                "relationship": "LOCATED_IN",
+                "business_use": "geographic risk context"
+              },
+              {
+                "path": "Farmer -[GROWS]-> Vegetables",
+                "relationship": "GROWS",
+                "business_use": "seasonal crop risk context"
+              },
+              {
+                "path": "Farmer -[MEMBER_OF]-> Kakamega Vegetables Cooperative",
+                "relationship": "MEMBER_OF",
+                "business_use": "cooperative contribution and repayment verification"
+              },
+              {
+                "path": "Farmer -[SAVES_WITH]-> Lurambi Vegetables Savings Group",
+                "relationship": "SAVES_WITH",
+                "business_use": "group savings and social repayment evidence"
+              },
+              {
+                "path": "Farmer -[SELLS_TO]-> Kakamega Vegetables Buyer Network",
+                "relationship": "SELLS_TO",
+                "business_use": "buyer receipt and market payment verification"
+              },
+              {
+                "path": "Farmer -[BUYS_FROM]-> Kakamega Agrovet Supplier Network",
+                "relationship": "BUYS_FROM",
+                "business_use": "input purchase and farming activity verification"
+              },
+              {
+                "path": "Farmer -[ADVISED_BY]-> Lurambi Extension Support Desk",
+                "relationship": "ADVISED_BY",
+                "business_use": "agronomy or extension support verification"
+              }
+            ],
+            "similarity_evidence": [
+              {
+                "peer_farmer_id": "F010",
+                "peer_name": "Jane Nekesa",
+                "similarity_score": 0.57,
+                "shared_reasons": [
+                  "same county",
+                  "same season",
+                  "similar savings group signal",
+                  "similar climate risk level"
+                ],
+                "business_use": "Peer similarity helps the loan officer compare this farmer against similar branch profiles. It does not approve or reject the farmer."
+              }
+            ],
+            "network_concentration": {
+              "cooperative_network": [
+                {
+                  "connected_farmers": null,
+                  "name": null,
+                  "type": "cooperative"
+                }
+              ],
+              "savings_group_network": [
+                {
+                  "connected_farmers": null,
+                  "name": null,
+                  "type": "savings_group"
+                }
+              ],
+              "buyer_network": [
+                {
+                  "connected_farmers": null,
+                  "name": null,
+                  "type": "buyer"
+                }
+              ]
+            },
+            "recommended_verification_path": [
+              "Confirm farmer identity, KYC details, and consent to use relationship evidence.",
+              "Verify savings group contributions or repayment references.",
+              "Verify cooperative membership, contributions, produce delivery, or repayment score.",
+              "Verify buyer receipts, produce sales records, or market payment confirmations.",
+              "Verify input purchase receipts from agrovet or supplier.",
+              "Verify extension officer or agronomist support record.",
+              "Record human loan officer outcome before any normal loan processing step."
+            ],
+            "graph_summary": "Graph support level is strong. The graph found 7 relationship path(s), 7 trusted relationship signal(s), and no material network risk signal. Use this to verify alternative evidence before the human loan officer records the final outcome.",
+            "score_handling": {
+              "does_not_override_ml_score": true,
+              "does_not_approve_or_reject": true,
+              "used_for": "relationship verification, risk context, and loan officer review guidance"
+            },
+            "agent": {
+              "name": "Neo4j Graph Intelligence Agent",
+              "version": "v1",
+              "role": "Uses Neo4j relationship intelligence to reveal cooperative, savings group, buyer, input supplier, extension support, county, crop, and peer-similarity evidence."
+            },
+            "linked_scoring_context": {
+              "ml_provider": "ml_scoring_agent",
+              "ml_score": 98,
+              "ml_tier": "Gold",
+              "important_boundary": "Graph intelligence supports verification and context. It does not override the ML score and does not make the final lending decision."
+            }
+          },
+          "decision_recommendation": {
+            "recommendation": "Proceed to loan officer review",
+            "reason": "Strong repayment-readiness signals are available, but human review remains required. Neo4j graph intelligence found useful relationship verification paths.",
+            "loan_officer_final_decision_required": true,
+            "not_an_approval": true,
+            "not_a_rejection": true,
+            "human_review_options": [
+              "Proceed to loan processing",
+              "Request more information",
+              "Adjust recommended amount",
+              "Defer for record building",
+              "Manual decline"
+            ]
+          },
+          "alternative_risk_intelligence": {
+            "mobile_money_consistency": "high",
+            "cooperative_repayment_score": 88,
+            "peer_lending_reliability": "strong",
+            "seasonal_income_pattern": "stable",
+            "input_purchase_frequency": "high",
+            "market_payment_consistency": "strong",
+            "alternative_data_used": [
+              "mobile money consistency",
+              "cooperative repayment score",
+              "peer lending reliability",
+              "input purchase frequency",
+              "market payment consistency",
+              "seasonal income pattern",
+              "savings group reliability",
+              "buyer payment reliability",
+              "extension support"
+            ],
+            "graph_support_level": "strong",
+            "trusted_relationship_signals": [
+              "Savings group relationship can support social repayment evidence.",
+              "Cooperative relationship can support contribution, delivery, or repayment verification.",
+              "Buyer or market payment relationship can support produce sales verification.",
+              "Input supplier relationship can verify active farming investment.",
+              "Extension officer relationship can support crop management verification.",
+              "Mobile money pattern provides additional relationship-adjacent transaction evidence.",
+              "Farmer has both cooperative and savings-group verification paths."
+            ],
+            "relationship_paths": [
+              {
+                "path": "Farmer -[LOCATED_IN]-> Kakamega",
+                "relationship": "LOCATED_IN",
+                "business_use": "geographic risk context"
+              },
+              {
+                "path": "Farmer -[GROWS]-> Vegetables",
+                "relationship": "GROWS",
+                "business_use": "seasonal crop risk context"
+              },
+              {
+                "path": "Farmer -[MEMBER_OF]-> Kakamega Vegetables Cooperative",
+                "relationship": "MEMBER_OF",
+                "business_use": "cooperative contribution and repayment verification"
+              },
+              {
+                "path": "Farmer -[SAVES_WITH]-> Lurambi Vegetables Savings Group",
+                "relationship": "SAVES_WITH",
+                "business_use": "group savings and social repayment evidence"
+              },
+              {
+                "path": "Farmer -[SELLS_TO]-> Kakamega Vegetables Buyer Network",
+                "relationship": "SELLS_TO",
+                "business_use": "buyer receipt and market payment verification"
+              },
+              {
+                "path": "Farmer -[BUYS_FROM]-> Kakamega Agrovet Supplier Network",
+                "relationship": "BUYS_FROM",
+                "business_use": "input purchase and farming activity verification"
+              },
+              {
+                "path": "Farmer -[ADVISED_BY]-> Lurambi Extension Support Desk",
+                "relationship": "ADVISED_BY",
+                "business_use": "agronomy or extension support verification"
+              }
+            ],
+            "exclusion_adjustment_note": "The ML scoring agent does not use gender, age, youth status, PWD status, disability type, farmer type, phone type, preferred language, or lack of land title as risk penalties. It predicts repayment readiness using alternative farmer evidence such as mobile money consistency, cooperative repayment, peer lending reliability, input purchase frequency, market payment consistency, and seasonal farming context."
+          },
+          "risk_context": {
+            "county": "Kakamega",
+            "area": "Lurambi",
+            "crop": "Vegetables",
+            "crop_stage": "harvest",
+            "season": "long_rains",
+            "climate_risk_level": "medium",
+            "pest_risk_level": "low",
+            "market_delay_risk": "low",
+            "localized_pest_outbreak": "low",
+            "localized_drought_exposure": "medium"
+          },
+          "inclusion_context": {
+            "farmer_type": "Women farmer",
+            "gender": "female",
+            "age": 42,
+            "is_youth": false,
+            "is_pwd": false,
+            "disability_type": null,
+            "has_land_title": false,
+            "phone_type": "feature_phone",
+            "preferred_channel": "ussd",
+            "preferred_language": "en",
+            "literacy_level": "medium",
+            "how_used": "These fields are used for fairness monitoring, accessibility, segmentation, and exclusion-context analysis. They are not used as negative risk penalties."
+          },
+          "fairness": {
+            "gender_penalty_applied": false,
+            "age_penalty_applied": false,
+            "youth_penalty_applied": false,
+            "pwd_penalty_applied": false,
+            "land_title_penalty_applied": false,
+            "protected_fields_not_used_as_risk_penalties": [
+              "gender",
+              "age",
+              "is_youth",
+              "is_pwd",
+              "disability_type",
+              "farmer_type",
+              "has_land_title"
+            ],
+            "protected_fields_purpose": {
+              "gender": "fairness monitoring and exclusion-context analysis",
+              "age": "fairness monitoring; youth status is not a credit penalty",
+              "is_youth": "youth inclusion monitoring and product/access support",
+              "is_pwd": "accessibility support and fairness monitoring",
+              "disability_type": "accessibility accommodation only",
+              "farmer_type": "segmentation and inclusion-context reporting",
+              "has_land_title": "collateral-context monitoring only; not automatic exclusion"
+            },
+            "alternative_evidence_used_to_reduce_exclusion": [
+              "mobile money consistency",
+              "cooperative repayment score",
+              "peer lending reliability",
+              "input purchase frequency",
+              "market payment consistency",
+              "seasonal income pattern",
+              "savings group reliability",
+              "buyer payment reliability",
+              "extension support"
+            ],
+            "risk_context_used": [
+              "localized pest outbreak",
+              "localized drought exposure",
+              "climate risk level",
+              "pest risk level",
+              "market delay risk",
+              "crop",
+              "crop stage",
+              "season"
+            ],
+            "note": "The system is identity-aware, not identity-scored. Protected and inclusion-related attributes are used for fairness monitoring, accessibility, and exclusion-context analysis. They are not used as negative risk penalties."
+          },
+          "farmer_message": {
+            "sms": "Invisible Farmer: Your credit-readiness review is complete. Tier: Gold. Score: 98/100. Possible support range: KES 20,000–30,000. Loan officer final decision required.",
+            "improvement_tips": [
+              "Use small formal products where available to build a track record."
+            ],
+            "ussd": {
+              "farmer_id": "F001",
+              "language": "en",
+              "ussd_code": "*384*55#",
+              "screens": [
+                {
+                  "screen": 1,
+                  "type": "CON",
+                  "text": "Invisible Farmer\n1. Check review status\n2. Request credit review\n3. View improvement tips\n0. End"
+                },
+                {
+                  "screen": 2,
+                  "type": "END",
+                  "text": "Review Status\nTier: Gold\nScore: 98/100\nPossible support: KES 20,000–30,000\nLoan officer final decision required."
+                }
+              ]
+            },
+            "farmer_safe": true,
+            "deterministic_sms": "Invisible Farmer: Your credit-readiness review is complete. Tier: Gold. Score: 98/100. Possible support range: KES 20,000–30,000. Loan officer final decision required.",
+            "ai_ussd_summary": "Tier: Gold\nScore: 98/100\nPossible support: KES 20,000–30,000\nLoan officer final decision required.",
+            "generated_by": "featherless_ai"
+          },
+          "officer_memo": "Loan Officer Memo\n\nFarmer: Mary Wanjiku (F001)\nLocation: Lurambi, Kakamega\nCrop/season: Vegetables during long_rains\nLoan request: KES 22,000 for Purchase certified vegetable seed and fertilizer\n\nScoring provider: ml_scoring_agent\nRepayment-readiness score: 98/100\nRepayment-readiness probability: 0.9954\nTier: Gold\nSuggested support range: KES 20,000–30,000\n\nAlternative evidence used: mobile money consistency; cooperative repayment score; peer lending reliability; input purchase frequency; market payment consistency; seasonal income pattern\n\nPositive signals: completed repayment history supported repayment readiness; has sales records supported repayment readiness; mobile money consistency = high supported repayment readiness; seasonal income pattern = stable supported repayment readiness; input purchase frequency = high supported repayment readiness\n\nRisk signals: No major risk signals detected.\n\nMissing data: formal credit history; land title or formal collateral\n\nResponsible AI note: The system is identity-aware, not identity-scored. Protected and inclusion-related attributes are used for fairness monitoring, accessibility, and exclusion-context analysis. They are not used as negative risk penalties.\n\nBoundary: This agent prepares decision support only. The human loan officer must make and record the final review outcome.",
+          "featherless_business_explanation": {
+            "provider": "featherless_ai",
+            "status": "live",
+            "business_use": "Featherless converts ML score, reason codes, alternative evidence, missing records, risk context, and fairness context into practical loan officer, branch, committee, farmer, and audit outputs.",
+            "outputs": {
+              "officer_decision_memo": "Loan Officer Memo\n\nFarmer: Mary Wanjiku (F001)\nLocation: Lurambi, Kakamega\nCrop/season: Vegetables during long_rains\nLoan request: KES 22,000 for Purchase certified vegetable seed and fertilizer\n\nScoring provider: ml_scoring_agent\nRepayment-readiness score: 98/100\nRepayment-readiness probability: 0.9954\nTier: Gold\nSuggested support range: KES 20,000–30,000\n\nAlternative evidence used: mobile money consistency; cooperative repayment score; peer lending reliability; input purchase frequency; market payment consistency; seasonal income pattern\n\nPositive signals: completed repayment history supported repayment readiness; has sales records supported repayment readiness; mobile money consistency = high supported repayment readiness; seasonal income pattern = stable supported repayment readiness; input purchase frequency = high supported repayment readiness\n\nRisk signals: No major risk signals detected.\n\nMissing data: formal credit history; land title or formal collateral\n\nResponsible AI note: The system is identity-aware, not identity-scored. Protected and inclusion-related attributes are used for fairness monitoring, accessibility, and exclusion-context analysis. They are not used as negative risk penalties.\n\nBoundary: This agent prepares decision support only. The human loan officer must make and record the final review outcome.",
+              "credit_committee_brief": "Credit Committee Brief\n\nFarmer: Mary Wanjiku (F001)\nLocation: Lurambi, Kakamega\nCrop/season: Vegetables during long_rains\nLoan request: KES 22,000 for Purchase certified vegetable seed and fertilizer\n\nML Scoring Provider: ml_scoring_agent\nScore: 98/100\nTier: Gold\nRecommended Loan Range: KES 20,000–30,000\n\nPositive Signals:\n- Completed repayment history\n- Sales records\n- High mobile money consistency\n- Stable seasonal income pattern\n- High input purchase frequency\n\nRisk Signals: None detected\n\nMissing Data:\n- Formal credit history\n- Land title or formal collateral\n\nAlternative Evidence Used:\n- Mobile money consistency\n- Cooperative repayment score\n- Peer lending reliability\n- Input purchase frequency\n- Market payment consistency\n- Seasonal income pattern\n\nDecision Note: Human loan officer final decision required.",
+              "branch_action_plan": [
+                "Confirm farmer identity and KYC details.",
+                "Verify savings group contributions or repayment references.",
+                "Verify cooperative membership, contributions, produce delivery, or repayment score.",
+                "Verify buyer receipts, produce sales records, or market payment confirmations.",
+                "Verify input purchase receipts from agrovet or supplier.",
+                "Verify extension officer or agronomist support record.",
+                "Record human loan officer outcome before any normal loan processing step."
+              ],
+              "farmer_sms": "Invisible Farmer: Your credit-readiness review is complete. Tier: Gold. Score: 98/100. Possible support range: KES 20,000–30,000. Loan officer final decision required.",
+              "farmer_ussd_summary": "Tier: Gold\nScore: 98/100\nPossible support: KES 20,000–30,000\nLoan officer final decision required.",
+              "data_collection_checklist": [
+                "Confirm farmer identity, KYC details, and consent to use alternative evidence.",
+                "Confirm farmer identity and KYC details.",
+                "Verify savings group contributions or repayment references.",
+                "Verify cooperative contribution, repayment, or produce delivery records.",
+                "Collect buyer receipts, produce sales records, or market payment confirmation.",
+                "Collect input purchase receipts for seed, fertilizer, pesticide, or other farm inputs.",
+                "Verify extension officer or agronomist support record."
+              ],
+              "risk_mitigation_notes": [
+                "No material risk signal is detected from the current review. Continue normal officer verification."
+              ],
+              "inclusion_accessibility_note": "The system is identity-aware, not identity-scored. Protected and inclusion-related attributes are used for fairness monitoring, accessibility, and exclusion-context analysis. They are not used as negative risk penalties. Lack of land title is treated as collateral-context, not automatic exclusion.",
+              "audit_explanation": "This agent provides decision support based on the ML scoring output, alternative farmer evidence, fairness context, missing data, and risk context. The final decision is made by the human loan officer. The agent does not approve or reject loans, nor does it override the ML score. The farmer's credit-readiness is supported by strong positive signals, but a human review is still required.",
+              "model_limitations": "The model does not use gender, age, youth status, PWD status, disability type, farmer type, phone type, language, literacy level, or lack of land title as risk penalties. It focuses on predicting repayment readiness using alternative farmer evidence such as mobile money consistency, cooperative repayment, peer lending reliability, input purchase frequency, market payment consistency, and seasonal farming context."
+            },
+            "quality_controls": {
+              "final_decision_made_by_agent": false,
+              "loan_officer_final_decision_required": true,
+              "safe_for_farmer": true,
+              "uses_protected_fields_as_penalty": false,
+              "risky_language_sanitized": true,
+              "source_of_score": "ml_scoring_agent"
+            }
+          },
+          "deterministic_officer_memo": "Loan Officer Memo\n\nFarmer: Mary Wanjiku (F001)\nLocation: Lurambi, Kakamega\nCrop/season: Vegetables during long_rains\nLoan request: KES 22,000 for Purchase certified vegetable seed and fertilizer\n\nScoring provider: ml_scoring_agent\nRepayment-readiness score: 98/100\nRepayment-readiness probability: 0.9954\nTier: Gold\nSuggested support range: KES 20,000–30,000\n\nAlternative evidence used: mobile money consistency; cooperative repayment score; peer lending reliability; input purchase frequency; market payment consistency; seasonal income pattern\n\nPositive signals: completed repayment history supported repayment readiness; has sales records supported repayment readiness; mobile money consistency = high supported repayment readiness; seasonal income pattern = stable supported repayment readiness; input purchase frequency = high supported repayment readiness\n\nRisk signals: No major risk signals detected.\n\nMissing data: formal credit history; land title or formal collateral\n\nResponsible AI note: The system is identity-aware, not identity-scored. Protected and inclusion-related attributes are used for fairness monitoring, accessibility, and exclusion-context analysis. They are not used as negative risk penalties.\n\nBoundary: This agent prepares decision support only. The human loan officer must make and record the final review outcome.",
+          "credit_committee_brief": "Credit Committee Brief\n\nFarmer: Mary Wanjiku (F001)\nLocation: Lurambi, Kakamega\nCrop/season: Vegetables during long_rains\nLoan request: KES 22,000 for Purchase certified vegetable seed and fertilizer\n\nML Scoring Provider: ml_scoring_agent\nScore: 98/100\nTier: Gold\nRecommended Loan Range: KES 20,000–30,000\n\nPositive Signals:\n- Completed repayment history\n- Sales records\n- High mobile money consistency\n- Stable seasonal income pattern\n- High input purchase frequency\n\nRisk Signals: None detected\n\nMissing Data:\n- Formal credit history\n- Land title or formal collateral\n\nAlternative Evidence Used:\n- Mobile money consistency\n- Cooperative repayment score\n- Peer lending reliability\n- Input purchase frequency\n- Market payment consistency\n- Seasonal income pattern\n\nDecision Note: Human loan officer final decision required.",
+          "branch_action_plan": [
+            "Confirm farmer identity and KYC details.",
+            "Verify savings group contributions or repayment references.",
+            "Verify cooperative membership, contributions, produce delivery, or repayment score.",
+            "Verify buyer receipts, produce sales records, or market payment confirmations.",
+            "Verify input purchase receipts from agrovet or supplier.",
+            "Verify extension officer or agronomist support record.",
+            "Record human loan officer outcome before any normal loan processing step."
+          ],
+          "data_collection_checklist": [
+            "Confirm farmer identity, KYC details, and consent to use alternative evidence.",
+            "Confirm farmer identity and KYC details.",
+            "Verify savings group contributions or repayment references.",
+            "Verify cooperative contribution, repayment, or produce delivery records.",
+            "Collect buyer receipts, produce sales records, or market payment confirmation.",
+            "Collect input purchase receipts for seed, fertilizer, pesticide, or other farm inputs.",
+            "Verify extension officer or agronomist support record."
+          ],
+          "risk_mitigation_notes": [
+            "No material risk signal is detected from the current review. Continue normal officer verification."
+          ],
+          "inclusion_accessibility_note": "The system is identity-aware, not identity-scored. Protected and inclusion-related attributes are used for fairness monitoring, accessibility, and exclusion-context analysis. They are not used as negative risk penalties. Lack of land title is treated as collateral-context, not automatic exclusion.",
+          "audit_explanation": "This agent provides decision support based on the ML scoring output, alternative farmer evidence, fairness context, missing data, and risk context. The final decision is made by the human loan officer. The agent does not approve or reject loans, nor does it override the ML score. The farmer's credit-readiness is supported by strong positive signals, but a human review is still required.",
+          "model_limitations": "The model does not use gender, age, youth status, PWD status, disability type, farmer type, phone type, language, literacy level, or lack of land title as risk penalties. It focuses on predicting repayment readiness using alternative farmer evidence such as mobile money consistency, cooperative repayment, peer lending reliability, input purchase frequency, market payment consistency, and seasonal farming context.",
+          "explanation_agent": {
+            "name": "Featherless Business Explanation Agent",
+            "version": "v1",
+            "role": "Transforms ML score, reason codes, alternative evidence, missing records, risk context, and fairness context into business-ready officer, farmer, branch, committee, and audit outputs."
+          }
+        },
+        "module_status": {
+          "ml_scoring_agent": "live",
+          "fairness_checks": "live",
+          "farmer_safe_messages": "live",
+          "featherless_explanations": "live",
+          "neo4j_graph_intelligence": "live",
+          "masumi_job_audit": "planned_stage_6",
+          "human_review_outcome": "planned_stage_6"
+        },
+        "responsible_ai_boundary": {
+          "agent_approves_or_rejects_loans": false,
+          "agent_disburses_money": false,
+          "loan_officer_final_decision_required": true,
+          "message": "This agent prepares credit-readiness decision support only. A human loan officer must make and record the final review outcome."
+        }
+      },
+      "human_review_outcome": null,
+      "audit_events": [
+        {
+          "timestamp": "2026-06-26T07:12:04.871354+00:00",
+          "job_id": "MASUMI-IFCR-399A5ECF5D39",
+          "farmer_id": "F001",
+          "event_type": "job_created",
+          "message": "Masumi local job created for farmer credit-readiness review.",
+          "metadata": {
+            "requested_by": "Kakamega Branch · Demo Loan Officer",
+            "purpose": "Credit-readiness review for input finance"
+          }
+        },
+        {
+          "timestamp": "2026-06-26T07:12:04.871380+00:00",
+          "job_id": "MASUMI-IFCR-399A5ECF5D39",
+          "farmer_id": "F001",
+          "event_type": "payment_mocked",
+          "message": "Local mocked payment status attached to Masumi job.",
+          "metadata": {
+            "payment_id": "IFCR-PAY-C2B5BF614F",
+            "job_id": "MASUMI-IFCR-399A5ECF5D39",
+            "farmer_id": "F001",
+            "payment_mode": "local_mocked",
+            "payment_status": "mocked_confirmed",
+            "amount": 0,
+            "currency": "USD",
+            "reason": "Local Masumi development mode. Payment is mocked so the demo can show job creation, review execution, audit, and human outcome recording.",
+            "created_at": "2026-06-26T07:12:04.871370+00:00"
+          }
+        },
+        {
+          "timestamp": "2026-06-26T07:13:12.317843+00:00",
+          "job_id": "MASUMI-IFCR-399A5ECF5D39",
+          "farmer_id": "F001",
+          "event_type": "review_completed",
+          "message": "Credit-readiness review completed and attached to Masumi job.",
+          "metadata": {
+            "review_id": "IFCR-REV-FD3F68AEB3",
+            "ml_provider": "ml_scoring_agent",
+            "ml_score": 98,
+            "ml_tier": "Gold",
+            "graph_provider": "neo4j_graph_intelligence",
+            "graph_status": "live",
+            "featherless_provider": "featherless_ai",
+            "featherless_status": "live"
+          }
+        }
+      ],
+      "responsible_ai_boundary": {
+        "agent_approves_or_rejects_loans": false,
+        "agent_disburses_money": false,
+        "loan_officer_final_decision_required": true
+      }
+    },
+    "MASUMI-IFCR-059D28CF94D7": {
+      "job_id": "MASUMI-IFCR-059D28CF94D7",
+      "agent_identifier": "local-invisible-farmer-credit-review-agent",
+      "agent_name": "Invisible Farmer Credit Review Agent",
+      "agent_version": "v2",
+      "farmer_id": "F010",
+      "requested_by": "Kakamega Branch · Demo Loan Officer",
+      "purpose": "Credit-readiness review for input finance",
+      "status": "completed",
+      "created_at": "2026-06-26T07:20:35.831301+00:00",
+      "updated_at": "2026-06-26T07:21:26.100712+00:00",
+      "payment": {
+        "payment_id": "IFCR-PAY-9D2CF19FEA",
+        "job_id": "MASUMI-IFCR-059D28CF94D7",
+        "farmer_id": "F010",
+        "payment_mode": "local_mocked",
+        "payment_status": "mocked_confirmed",
+        "amount": 0,
+        "currency": "USD",
+        "reason": "Local Masumi development mode. Payment is mocked so the demo can show job creation, review execution, audit, and human outcome recording.",
+        "created_at": "2026-06-26T07:20:35.831335+00:00"
+      },
+      "result": {
+        "review_id": "IFCR-REV-3E94E7B7CB",
+        "created_at": "2026-06-26T07:21:26.100674+00:00",
+        "review_type": "credit_readiness_review",
+        "agent_name": "Invisible Farmer Credit Review Agent",
+        "agent_version": "v2",
+        "farmer_id": "F010",
+        "farmer_name": "Jane Nekesa",
+        "status": "completed",
+        "decision_support": {
+          "farmer": {
+            "farmer_id": "F010",
+            "name": "Jane Nekesa",
+            "county": "Kakamega",
+            "area": "Butere",
+            "crop": "Maize",
+            "crop_stage": "planting",
+            "season": "long_rains",
+            "loan_request": 9000,
+            "loan_purpose": "Purchase maize seed and pesticide"
+          },
+          "credit_readiness": {
+            "provider": "ml_scoring_agent",
+            "model_type": "logistic_regression_scorecard",
+            "model_version": "synthetic-v1",
+            "score": 8,
+            "repayment_readiness_probability": 0.0833,
+            "tier": "Not Ready",
+            "recommended_loan_range": "Record-building support recommended first",
+            "confidence": "medium",
+            "loan_officer_final_decision_required": true,
+            "manual_attention_required": true,
+            "human_review_required": true,
+            "positive_signals": [
+              "savings group reliability = strong supported repayment readiness",
+              "peer lending reliability = strong supported repayment readiness",
+              "verified input purchase supported repayment readiness",
+              "active savings group supported repayment readiness"
+            ],
+            "risk_signals": [
+              "market payment consistency = none reduced repayment readiness",
+              "localized pest outbreak = high reduced repayment readiness",
+              "seasonal income pattern = volatile reduced repayment readiness",
+              "market delay risk = high reduced repayment readiness",
+              "buyer payment reliability = none reduced repayment readiness"
+            ],
+            "technical_risk_signals": [
+              "market payment consistency = none reduced repayment readiness",
+              "localized pest outbreak = high reduced repayment readiness",
+              "seasonal income pattern = volatile reduced repayment readiness",
+              "cooperative reliability = none reduced repayment readiness",
+              "market delay risk = high reduced repayment readiness",
+              "buyer payment reliability = none reduced repayment readiness"
+            ],
+            "material_risk_signals": [
+              "market payment consistency = none reduced repayment readiness",
+              "localized pest outbreak = high reduced repayment readiness",
+              "seasonal income pattern = volatile reduced repayment readiness",
+              "market delay risk = high reduced repayment readiness",
+              "buyer payment reliability = none reduced repayment readiness"
+            ],
+            "missing_data": [
+              "cooperative repayment score",
+              "market payment consistency",
+              "buyer records",
+              "sales records",
+              "formal credit history",
+              "land title or formal collateral"
+            ],
+            "alternative_data_used": [
+              "mobile money consistency",
+              "peer lending reliability",
+              "input purchase frequency",
+              "seasonal income pattern",
+              "savings group reliability"
+            ],
+            "model_reason_codes": {
+              "top_positive_reason_codes": [
+                {
+                  "feature": "savings group reliability = strong",
+                  "contribution": 0.3652
+                },
+                {
+                  "feature": "peer lending reliability = strong",
+                  "contribution": 0.3202
+                },
+                {
+                  "feature": "verified input purchase",
+                  "contribution": 0.2347
+                },
+                {
+                  "feature": "active savings group",
+                  "contribution": 0.1834
+                }
+              ],
+              "top_risk_reason_codes": [
+                {
+                  "feature": "market payment consistency = none",
+                  "contribution": -0.5239
+                },
+                {
+                  "feature": "localized pest outbreak = high",
+                  "contribution": -0.4669
+                },
+                {
+                  "feature": "seasonal income pattern = volatile",
+                  "contribution": -0.466
+                },
+                {
+                  "feature": "cooperative reliability = none",
+                  "contribution": -0.3954
+                },
+                {
+                  "feature": "market delay risk = high",
+                  "contribution": -0.3683
+                },
+                {
+                  "feature": "buyer payment reliability = none",
+                  "contribution": -0.3078
+                }
+              ],
+              "raw_reason_code_count": 22
+            },
+            "protected_attributes_excluded_from_training": [
+              "farmer_id",
+              "name",
+              "gender",
+              "age",
+              "is_youth",
+              "is_pwd",
+              "disability_type",
+              "farmer_type",
+              "has_land_title",
+              "phone_number_masked",
+              "phone_type",
+              "preferred_channel",
+              "preferred_language",
+              "literacy_level",
+              "repayment_outcome",
+              "latent_repayment_probability",
+              "target_repaid_on_time"
+            ],
+            "exclusion_adjustment_note": "The ML scoring agent does not use gender, age, youth status, PWD status, disability type, farmer type, phone type, preferred language, or lack of land title as risk penalties. It predicts repayment readiness using alternative farmer evidence such as mobile money consistency, cooperative repayment, peer lending reliability, input purchase frequency, market payment consistency, and seasonal farming context.",
+            "used_for_final_decision": false,
+            "final_decision_note": "The ML score supports loan officer review only. The human loan officer makes the final decision."
+          },
+          "graph_intelligence": {
+            "provider": "neo4j_graph_intelligence",
+            "status": "live",
+            "graph_support_level": "moderate",
+            "business_use": "Graph intelligence converts hidden farmer relationships into verification paths, network risk context, and alternative evidence for loan officer decision support.",
+            "trusted_relationship_signals": [
+              "Savings group relationship can support social repayment evidence."
+            ],
+            "network_risk_signals": [
+              "High pest exposure should be reviewed with extension or input supplier evidence.",
+              "High market delay risk may affect repayment schedule timing.",
+              "Weak buyer payment reliability may reduce confidence in sales-based repayment evidence."
+            ],
+            "relationship_paths": [
+              {
+                "path": "Farmer -[LOCATED_IN]-> Kakamega",
+                "relationship": "LOCATED_IN",
+                "business_use": "geographic risk context"
+              },
+              {
+                "path": "Farmer -[GROWS]-> Maize",
+                "relationship": "GROWS",
+                "business_use": "seasonal crop risk context"
+              },
+              {
+                "path": "Farmer -[SAVES_WITH]-> Butere Maize Savings Group",
+                "relationship": "SAVES_WITH",
+                "business_use": "group savings and social repayment evidence"
+              },
+              {
+                "path": "Farmer -[BUYS_FROM]-> Kakamega Agrovet Supplier Network",
+                "relationship": "BUYS_FROM",
+                "business_use": "input purchase and farming activity verification"
+              }
+            ],
+            "similarity_evidence": [
+              {
+                "peer_farmer_id": "F005",
+                "peer_name": "Kevin Otieno",
+                "similarity_score": 0.71,
+                "shared_reasons": [
+                  "same crop",
+                  "same season",
+                  "similar savings group signal",
+                  "similar cooperative signal",
+                  "similar buyer payment signal"
+                ],
+                "business_use": "Peer similarity helps the loan officer compare this farmer against similar branch profiles. It does not approve or reject the farmer."
+              },
+              {
+                "peer_farmer_id": "F001",
+                "peer_name": "Mary Wanjiku",
+                "similarity_score": 0.57,
+                "shared_reasons": [
+                  "same county",
+                  "same season",
+                  "similar savings group signal",
+                  "similar climate risk level"
+                ],
+                "business_use": "Peer similarity helps the loan officer compare this farmer against similar branch profiles. It does not approve or reject the farmer."
+              }
+            ],
+            "network_concentration": {
+              "cooperative_network": [
+                {
+                  "connected_farmers": null,
+                  "name": null,
+                  "type": "cooperative"
+                }
+              ],
+              "savings_group_network": [
+                {
+                  "connected_farmers": null,
+                  "name": null,
+                  "type": "savings_group"
+                }
+              ],
+              "buyer_network": [
+                {
+                  "connected_farmers": null,
+                  "name": null,
+                  "type": "buyer"
+                }
+              ]
+            },
+            "recommended_verification_path": [
+              "Confirm farmer identity, KYC details, and consent to use relationship evidence.",
+              "Verify savings group contributions or repayment references.",
+              "Verify input purchase receipts from agrovet or supplier.",
+              "Discuss network risk signals with the farmer and record mitigation notes.",
+              "Record human loan officer outcome before any normal loan processing step."
+            ],
+            "graph_summary": "Graph support level is moderate. The graph found 4 relationship path(s), 1 trusted relationship signal(s), and 3 network risk signal(s). Use this to verify alternative evidence before the human loan officer records the final outcome.",
+            "score_handling": {
+              "does_not_override_ml_score": true,
+              "does_not_approve_or_reject": true,
+              "used_for": "relationship verification, risk context, and loan officer review guidance"
+            },
+            "agent": {
+              "name": "Neo4j Graph Intelligence Agent",
+              "version": "v1",
+              "role": "Uses Neo4j relationship intelligence to reveal cooperative, savings group, buyer, input supplier, extension support, county, crop, and peer-similarity evidence."
+            },
+            "linked_scoring_context": {
+              "ml_provider": "ml_scoring_agent",
+              "ml_score": 8,
+              "ml_tier": "Not Ready",
+              "important_boundary": "Graph intelligence supports verification and context. It does not override the ML score and does not make the final lending decision."
+            }
+          },
+          "decision_recommendation": {
+            "recommendation": "Defer for record-building support",
+            "reason": "The farmer needs stronger records or risk mitigation before normal loan processing. Multiple scoring risk signals should be reviewed. Network risk signals should be reviewed. Several important records are missing.",
+            "loan_officer_final_decision_required": true,
+            "not_an_approval": true,
+            "not_a_rejection": true,
+            "human_review_options": [
+              "Proceed to loan processing",
+              "Request more information",
+              "Adjust recommended amount",
+              "Defer for record building",
+              "Manual decline"
+            ]
+          },
+          "alternative_risk_intelligence": {
+            "mobile_money_consistency": "low",
+            "cooperative_repayment_score": null,
+            "peer_lending_reliability": "strong",
+            "seasonal_income_pattern": "volatile",
+            "input_purchase_frequency": "low",
+            "market_payment_consistency": "none",
+            "alternative_data_used": [
+              "mobile money consistency",
+              "peer lending reliability",
+              "input purchase frequency",
+              "seasonal income pattern",
+              "savings group reliability"
+            ],
+            "graph_support_level": "moderate",
+            "trusted_relationship_signals": [
+              "Savings group relationship can support social repayment evidence."
+            ],
+            "relationship_paths": [
+              {
+                "path": "Farmer -[LOCATED_IN]-> Kakamega",
+                "relationship": "LOCATED_IN",
+                "business_use": "geographic risk context"
+              },
+              {
+                "path": "Farmer -[GROWS]-> Maize",
+                "relationship": "GROWS",
+                "business_use": "seasonal crop risk context"
+              },
+              {
+                "path": "Farmer -[SAVES_WITH]-> Butere Maize Savings Group",
+                "relationship": "SAVES_WITH",
+                "business_use": "group savings and social repayment evidence"
+              },
+              {
+                "path": "Farmer -[BUYS_FROM]-> Kakamega Agrovet Supplier Network",
+                "relationship": "BUYS_FROM",
+                "business_use": "input purchase and farming activity verification"
+              }
+            ],
+            "exclusion_adjustment_note": "The ML scoring agent does not use gender, age, youth status, PWD status, disability type, farmer type, phone type, preferred language, or lack of land title as risk penalties. It predicts repayment readiness using alternative farmer evidence such as mobile money consistency, cooperative repayment, peer lending reliability, input purchase frequency, market payment consistency, and seasonal farming context."
+          },
+          "risk_context": {
+            "county": "Kakamega",
+            "area": "Butere",
+            "crop": "Maize",
+            "crop_stage": "planting",
+            "season": "long_rains",
+            "climate_risk_level": "medium",
+            "pest_risk_level": "high",
+            "market_delay_risk": "high",
+            "localized_pest_outbreak": "high",
+            "localized_drought_exposure": "medium"
+          },
+          "inclusion_context": {
+            "farmer_type": "Women farmer",
+            "gender": "female",
+            "age": 34,
+            "is_youth": false,
+            "is_pwd": false,
+            "disability_type": null,
+            "has_land_title": false,
+            "phone_type": "shared_phone",
+            "preferred_channel": "ussd",
+            "preferred_language": "en",
+            "literacy_level": "low",
+            "how_used": "These fields are used for fairness monitoring, accessibility, segmentation, and exclusion-context analysis. They are not used as negative risk penalties."
+          },
+          "fairness": {
+            "gender_penalty_applied": false,
+            "age_penalty_applied": false,
+            "youth_penalty_applied": false,
+            "pwd_penalty_applied": false,
+            "land_title_penalty_applied": false,
+            "protected_fields_not_used_as_risk_penalties": [
+              "gender",
+              "age",
+              "is_youth",
+              "is_pwd",
+              "disability_type",
+              "farmer_type",
+              "has_land_title"
+            ],
+            "protected_fields_purpose": {
+              "gender": "fairness monitoring and exclusion-context analysis",
+              "age": "fairness monitoring; youth status is not a credit penalty",
+              "is_youth": "youth inclusion monitoring and product/access support",
+              "is_pwd": "accessibility support and fairness monitoring",
+              "disability_type": "accessibility accommodation only",
+              "farmer_type": "segmentation and inclusion-context reporting",
+              "has_land_title": "collateral-context monitoring only; not automatic exclusion"
+            },
+            "alternative_evidence_used_to_reduce_exclusion": [
+              "mobile money consistency",
+              "peer lending reliability",
+              "input purchase frequency",
+              "seasonal income pattern",
+              "savings group reliability"
+            ],
+            "risk_context_used": [
+              "localized pest outbreak",
+              "localized drought exposure",
+              "climate risk level",
+              "pest risk level",
+              "market delay risk",
+              "crop",
+              "crop stage",
+              "season"
+            ],
+            "note": "The system is identity-aware, not identity-scored. Protected and inclusion-related attributes are used for fairness monitoring, accessibility, and exclusion-context analysis. They are not used as negative risk penalties."
+          },
+          "farmer_message": {
+            "sms": "Invisible Farmer: Your credit-readiness review is complete. Tier: Not Ready. Score: 8/100. Recommended next step: build more records before loan processing. Loan officer final decision required.",
+            "improvement_tips": [
+              "Ask your cooperative or group to record repayment and contribution history.",
+              "Keep buyer payment records after selling produce.",
+              "Record produce sales, buyer name, date, quantity, and amount.",
+              "Use small formal products where available to build a track record.",
+              "Keep extension officer or input supplier records for pest-control support."
+            ],
+            "ussd": {
+              "farmer_id": "F010",
+              "language": "en",
+              "ussd_code": "*384*55#",
+              "screens": [
+                {
+                  "screen": 1,
+                  "type": "CON",
+                  "text": "Invisible Farmer\n1. Check review status\n2. Request credit review\n3. View improvement tips\n0. End"
+                },
+                {
+                  "screen": 2,
+                  "type": "END",
+                  "text": "Review Status\nTier: Not Ready\nScore: 8/100\nPossible support: Record-building support recommended first\nLoan officer final decision required."
+                }
+              ]
+            },
+            "farmer_safe": true,
+            "deterministic_sms": "Invisible Farmer: Your credit-readiness review is complete. Tier: Not Ready. Score: 8/100. Recommended next step: build more records before loan processing. Loan officer final decision required.",
+            "ai_ussd_summary": "Tier: Not Ready\nScore: 8/100\nPossible support: Record-building support recommended first\nLoan officer final decision required.",
+            "generated_by": "featherless_ai"
+          },
+          "officer_memo": "Loan Officer Memo\n\nFarmer: Jane Nekesa (F010)\nLocation: Butere, Kakamega\nCrop/season: Maize during long_rains\nLoan request: KES 9,000 for Purchase maize seed and pesticide\n\nML Scoring Provider: ml_scoring_agent\nRepayment-readiness score: 8/100\nRepayment-readiness probability: 0.0833\nTier: Not Ready\nSuggested support range: Record-building support recommended first\n\nPositive Signals:\n- Strong savings group reliability\n- Strong peer lending reliability\n- Verified input purchase\n- Active savings group participation\n\nRisk Signals:\n- High localized pest outbreak\n- Volatile seasonal income pattern\n- High market delay risk\n- None buyer payment reliability\n- None market payment consistency\n\nMissing Data:\n- Cooperative repayment score\n- Market payment consistency\n- Buyer records\n- Sales records\n- Formal credit history\n- Land title or formal collateral\n\nAction Required: Verify records and consider record-building support. Final decision by loan officer required.",
+          "featherless_business_explanation": {
+            "provider": "featherless_ai",
+            "status": "live",
+            "business_use": "Featherless converts ML score, reason codes, alternative evidence, missing records, risk context, and fairness context into practical loan officer, branch, committee, farmer, and audit outputs.",
+            "outputs": {
+              "officer_decision_memo": "Loan Officer Memo\n\nFarmer: Jane Nekesa (F010)\nLocation: Butere, Kakamega\nCrop/season: Maize during long_rains\nLoan request: KES 9,000 for Purchase maize seed and pesticide\n\nML Scoring Provider: ml_scoring_agent\nRepayment-readiness score: 8/100\nRepayment-readiness probability: 0.0833\nTier: Not Ready\nSuggested support range: Record-building support recommended first\n\nPositive Signals:\n- Strong savings group reliability\n- Strong peer lending reliability\n- Verified input purchase\n- Active savings group participation\n\nRisk Signals:\n- High localized pest outbreak\n- Volatile seasonal income pattern\n- High market delay risk\n- None buyer payment reliability\n- None market payment consistency\n\nMissing Data:\n- Cooperative repayment score\n- Market payment consistency\n- Buyer records\n- Sales records\n- Formal credit history\n- Land title or formal collateral\n\nAction Required: Verify records and consider record-building support. Final decision by loan officer required.",
+              "credit_committee_brief": "Credit Committee Brief\n\nFarmer: Jane Nekesa (F010)\nLocation: Butere, Kakamega\nCrop/Season: Maize during long_rains\nLoan Request: KES 9,000 for Purchase maize seed and pesticide\n\nML Scoring Provider: ml_scoring_agent\nRepayment-readiness score: 8/100\nTier: Not Ready\nSuggested Support: Record-building support recommended first\n\nPositive Signals:\n- Strong savings group reliability\n- Strong peer lending reliability\n- Verified input purchase\n- Active savings group participation\n\nRisk Signals:\n- High localized pest outbreak\n- Volatile seasonal income pattern\n- High market delay risk\n- None buyer payment reliability\n- None market payment consistency\n\nMissing Data:\n- Cooperative repayment score\n- Market payment consistency\n- Buyer records\n- Sales records\n- Formal credit history\n- Land title or formal collateral\n\nRecommendation: Consider record-building support and further verification. Final decision by loan officer required.",
+              "branch_action_plan": [
+                "Verify Jane Nekesa's identity and KYC details.",
+                "Collect savings group contribution or repayment references.",
+                "Obtain input purchase receipts from agrovet or supplier.",
+                "Discuss network risk signals with the farmer and record mitigation notes.",
+                "Record human loan officer outcome before proceeding with loan processing."
+              ],
+              "farmer_sms": "Invisible Farmer: Your credit-readiness review is complete. Tier: Not Ready. Score: 8/100. Recommended next step: build more records before loan processing. Loan officer final decision required.",
+              "farmer_ussd_summary": "Tier: Not Ready\nScore: 8/100\nPossible support: Record-building support recommended first\nLoan officer final decision required.",
+              "data_collection_checklist": [
+                "Confirm farmer identity, KYC details, and consent to use alternative evidence.",
+                "ID/KYC confirmation",
+                "Verify mobile money farming transaction evidence where the farmer has consented.",
+                "Savings group records",
+                "Verify cooperative contribution, repayment, or produce delivery records.",
+                "Collect buyer receipts, produce sales records, or market payment confirmation.",
+                "Collect input purchase receipts for seed, fertilizer, pesticide, or other farm inputs.",
+                "Extension officer or agronomist notes",
+                "Repayment references"
+              ],
+              "risk_mitigation_notes": [
+                "High localized pest outbreak should be reviewed with extension or input supplier evidence.",
+                "High market delay risk may affect repayment schedule timing.",
+                "Weak buyer payment reliability may reduce confidence in sales-based repayment evidence.",
+                "No material risk signal is detected from the current review. Continue normal officer verification."
+              ],
+              "inclusion_accessibility_note": "The system is identity-aware, not identity-scored. Protected and inclusion-related attributes are used for fairness monitoring, accessibility, and exclusion-context analysis. They are not used as negative risk penalties. Lack of land title is treated as collateral-context, not automatic exclusion.",
+              "audit_explanation": "The Featherless Business Explanation Agent prepared this review based on the ML scoring output, alternative farmer evidence, fairness context, missing data, and risk context. The agent does not make final decisions. The human loan officer must make and record the final review outcome.",
+              "model_limitations": "The ML scoring model provides a preliminary assessment. It does not override the final decision made by the loan officer. The model uses alternative evidence like mobile money consistency, peer lending reliability, input purchase frequency, seasonal income pattern, and savings group reliability to predict repayment readiness."
+            },
+            "quality_controls": {
+              "final_decision_made_by_agent": false,
+              "loan_officer_final_decision_required": true,
+              "safe_for_farmer": true,
+              "uses_protected_fields_as_penalty": false,
+              "risky_language_sanitized": true,
+              "source_of_score": "ml_scoring_agent"
+            }
+          },
+          "deterministic_officer_memo": "Loan Officer Memo\n\nFarmer: Jane Nekesa (F010)\nLocation: Butere, Kakamega\nCrop/season: Maize during long_rains\nLoan request: KES 9,000 for Purchase maize seed and pesticide\n\nScoring provider: ml_scoring_agent\nRepayment-readiness score: 8/100\nRepayment-readiness probability: 0.0833\nTier: Not Ready\nSuggested support range: Record-building support recommended first\n\nAlternative evidence used: mobile money consistency; peer lending reliability; input purchase frequency; seasonal income pattern; savings group reliability\n\nPositive signals: savings group reliability = strong supported repayment readiness; peer lending reliability = strong supported repayment readiness; verified input purchase supported repayment readiness; active savings group supported repayment readiness\n\nRisk signals: market payment consistency = none reduced repayment readiness; localized pest outbreak = high reduced repayment readiness; seasonal income pattern = volatile reduced repayment readiness; market delay risk = high reduced repayment readiness; buyer payment reliability = none reduced repayment readiness\n\nMissing data: cooperative repayment score; market payment consistency; buyer records; sales records; formal credit history\n\nResponsible AI note: The system is identity-aware, not identity-scored. Protected and inclusion-related attributes are used for fairness monitoring, accessibility, and exclusion-context analysis. They are not used as negative risk penalties.\n\nBoundary: This agent prepares decision support only. The human loan officer must make and record the final review outcome.",
+          "credit_committee_brief": "Credit Committee Brief\n\nFarmer: Jane Nekesa (F010)\nLocation: Butere, Kakamega\nCrop/Season: Maize during long_rains\nLoan Request: KES 9,000 for Purchase maize seed and pesticide\n\nML Scoring Provider: ml_scoring_agent\nRepayment-readiness score: 8/100\nTier: Not Ready\nSuggested Support: Record-building support recommended first\n\nPositive Signals:\n- Strong savings group reliability\n- Strong peer lending reliability\n- Verified input purchase\n- Active savings group participation\n\nRisk Signals:\n- High localized pest outbreak\n- Volatile seasonal income pattern\n- High market delay risk\n- None buyer payment reliability\n- None market payment consistency\n\nMissing Data:\n- Cooperative repayment score\n- Market payment consistency\n- Buyer records\n- Sales records\n- Formal credit history\n- Land title or formal collateral\n\nRecommendation: Consider record-building support and further verification. Final decision by loan officer required.",
+          "branch_action_plan": [
+            "Verify Jane Nekesa's identity and KYC details.",
+            "Collect savings group contribution or repayment references.",
+            "Obtain input purchase receipts from agrovet or supplier.",
+            "Discuss network risk signals with the farmer and record mitigation notes.",
+            "Record human loan officer outcome before proceeding with loan processing."
+          ],
+          "data_collection_checklist": [
+            "Confirm farmer identity, KYC details, and consent to use alternative evidence.",
+            "ID/KYC confirmation",
+            "Verify mobile money farming transaction evidence where the farmer has consented.",
+            "Savings group records",
+            "Verify cooperative contribution, repayment, or produce delivery records.",
+            "Collect buyer receipts, produce sales records, or market payment confirmation.",
+            "Collect input purchase receipts for seed, fertilizer, pesticide, or other farm inputs.",
+            "Extension officer or agronomist notes",
+            "Repayment references"
+          ],
+          "risk_mitigation_notes": [
+            "High localized pest outbreak should be reviewed with extension or input supplier evidence.",
+            "High market delay risk may affect repayment schedule timing.",
+            "Weak buyer payment reliability may reduce confidence in sales-based repayment evidence.",
+            "No material risk signal is detected from the current review. Continue normal officer verification."
+          ],
+          "inclusion_accessibility_note": "The system is identity-aware, not identity-scored. Protected and inclusion-related attributes are used for fairness monitoring, accessibility, and exclusion-context analysis. They are not used as negative risk penalties. Lack of land title is treated as collateral-context, not automatic exclusion.",
+          "audit_explanation": "The Featherless Business Explanation Agent prepared this review based on the ML scoring output, alternative farmer evidence, fairness context, missing data, and risk context. The agent does not make final decisions. The human loan officer must make and record the final review outcome.",
+          "model_limitations": "The ML scoring model provides a preliminary assessment. It does not override the final decision made by the loan officer. The model uses alternative evidence like mobile money consistency, peer lending reliability, input purchase frequency, seasonal income pattern, and savings group reliability to predict repayment readiness.",
+          "explanation_agent": {
+            "name": "Featherless Business Explanation Agent",
+            "version": "v1",
+            "role": "Transforms ML score, reason codes, alternative evidence, missing records, risk context, and fairness context into business-ready officer, farmer, branch, committee, and audit outputs."
+          }
+        },
+        "module_status": {
+          "ml_scoring_agent": "live",
+          "fairness_checks": "live",
+          "farmer_safe_messages": "live",
+          "featherless_explanations": "live",
+          "neo4j_graph_intelligence": "live",
+          "masumi_job_audit": "planned_stage_6",
+          "human_review_outcome": "planned_stage_6"
+        },
+        "responsible_ai_boundary": {
+          "agent_approves_or_rejects_loans": false,
+          "agent_disburses_money": false,
+          "loan_officer_final_decision_required": true,
+          "message": "This agent prepares credit-readiness decision support only. A human loan officer must make and record the final review outcome."
+        }
+      },
+      "human_review_outcome": null,
+      "audit_events": [
+        {
+          "timestamp": "2026-06-26T07:20:35.831319+00:00",
+          "job_id": "MASUMI-IFCR-059D28CF94D7",
+          "farmer_id": "F010",
+          "event_type": "job_created",
+          "message": "Masumi local job created for farmer credit-readiness review.",
+          "metadata": {
+            "requested_by": "Kakamega Branch · Demo Loan Officer",
+            "purpose": "Credit-readiness review for input finance"
+          }
+        },
+        {
+          "timestamp": "2026-06-26T07:20:35.831342+00:00",
+          "job_id": "MASUMI-IFCR-059D28CF94D7",
+          "farmer_id": "F010",
+          "event_type": "payment_mocked",
+          "message": "Local mocked payment status attached to Masumi job.",
+          "metadata": {
+            "payment_id": "IFCR-PAY-9D2CF19FEA",
+            "job_id": "MASUMI-IFCR-059D28CF94D7",
+            "farmer_id": "F010",
+            "payment_mode": "local_mocked",
+            "payment_status": "mocked_confirmed",
+            "amount": 0,
+            "currency": "USD",
+            "reason": "Local Masumi development mode. Payment is mocked so the demo can show job creation, review execution, audit, and human outcome recording.",
+            "created_at": "2026-06-26T07:20:35.831335+00:00"
+          }
+        },
+        {
+          "timestamp": "2026-06-26T07:21:26.100740+00:00",
+          "job_id": "MASUMI-IFCR-059D28CF94D7",
+          "farmer_id": "F010",
+          "event_type": "review_completed",
+          "message": "Credit-readiness review completed and attached to Masumi job.",
+          "metadata": {
+            "review_id": "IFCR-REV-3E94E7B7CB",
+            "ml_provider": "ml_scoring_agent",
+            "ml_score": 8,
+            "ml_tier": "Not Ready",
+            "graph_provider": "neo4j_graph_intelligence",
+            "graph_status": "live",
+            "featherless_provider": "featherless_ai",
+            "featherless_status": "live"
+          }
+        }
+      ],
+      "responsible_ai_boundary": {
+        "agent_approves_or_rejects_loans": false,
+        "agent_disburses_money": false,
+        "loan_officer_final_decision_required": true
+      }
+    }
+  }
+}

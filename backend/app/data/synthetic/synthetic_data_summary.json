@@ -1,0 +1,28 @@
+{
+  "rows": 12000,
+  "target_distribution": {
+    "1": 6000,
+    "0": 6000
+  },
+  "repayment_outcomes": {
+    "on_time": 3507,
+    "late": 2731,
+    "restructured": 1678,
+    "defaulted": 1591,
+    "fully_repaid": 1561,
+    "early": 932
+  },
+  "gender_distribution": {
+    "female": 6259,
+    "male": 5741
+  },
+  "youth_distribution": {
+    "False": 7688,
+    "True": 4312
+  },
+  "pwd_distribution": {
+    "False": 10756,
+    "True": 1244
+  },
+  "note": "Synthetic repayment labels are generated from alternative farmer evidence. Protected and inclusion-related fields are included for fairness monitoring and accessibility context but are not used in the latent repayment function."
+}
