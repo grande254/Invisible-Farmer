@@ -41,7 +41,9 @@ SET
     f.pest_risk_level = $pest_risk_level,
     f.market_delay_risk = $market_delay_risk,
     f.localized_drought_exposure = $localized_drought_exposure,
-    f.localized_pest_outbreak = $localized_pest_outbreak
+    f.localized_pest_outbreak = $localized_pest_outbreak,
+    f.scenario_label = $scenario_label,
+f.primary_graph_signal = $primary_graph_signal
 RETURN f.farmer_id AS farmer_id
 """
 

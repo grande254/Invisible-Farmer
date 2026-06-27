@@ -13,6 +13,11 @@ class StartJobRequest(BaseModel):
     farmer_id: str
     requested_by: Optional[str] = None
     purpose: Optional[str] = None
+    tx_hash: Optional[str] = None
+
+
+class VerifyPaymentRequest(BaseModel):
+    tx_hash: str
 
 
 class HumanOutcomeRequest(BaseModel):
@@ -37,6 +42,7 @@ def start_job(payload: StartJobRequest):
         farmer_id=payload.farmer_id,
         requested_by=payload.requested_by,
         purpose=payload.purpose,
+        tx_hash=payload.tx_hash,
     )
 
 
@@ -64,8 +70,30 @@ def v1_start_job(payload: StartJobRequest):
         farmer_id=payload.farmer_id,
         requested_by=payload.requested_by,
         purpose=payload.purpose,
+        tx_hash=payload.tx_hash,
     )
 
+@router.post("/v1/masumi/jobs/{job_id}/verify-payment", operation_id="v1_masumi_verify_payment")
+def v1_verify_payment(job_id: str, payload: VerifyPaymentRequest):
+    try:
+        return masumi_job_agent.verify_payment_and_run(
+            job_id=job_id,
+            tx_hash=payload.tx_hash,
+        )
+    except ValueError as exc:
+        raise HTTPException(status_code=404, detail=str(exc))
+    
+@router.get("/v1/masumi/jobs/{job_id}/payment", operation_id="v1_masumi_job_payment")
+def v1_get_job_payment(job_id: str):
+    try:
+        job = masumi_job_agent.get_job(job_id)
+        return {
+            "job_id": job_id,
+            "payment": job.get("payment"),
+        }
+    except ValueError as exc:
+        raise HTTPException(status_code=404, detail=str(exc))
+    
 
 @router.get("/v1/masumi/jobs", operation_id="v1_masumi_list_jobs")
 def v1_list_jobs():

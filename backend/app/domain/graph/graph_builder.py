@@ -77,6 +77,8 @@ def farmer_import_payload(farmer: dict) -> dict:
         "cooperative_repayment_score": farmer.get("cooperative_repayment_score"),
         "verified_input_purchase": bool(farmer.get("verified_input_purchase")),
         "extension_support": bool(farmer.get("extension_support")),
+        "scenario_label": farmer.get("scenario_label"),
+        "primary_graph_signal": farmer.get("primary_graph_signal"),
     }
 
     payload.update(build_graph_identity(farmer))
